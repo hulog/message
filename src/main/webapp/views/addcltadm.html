@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="../styles/bootstrap/bootstrap.min.css" rel="stylesheet">
+<link href="../styles/msg.css" rel="stylesheet">
+<title>新增用户</title>
+</head>
+<body>
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                data-target="#example-navbar-collapse">
+            <span class="sr-only">切换导航</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">消息发送系统</a>
+    </div>
+    <div class="collapse navbar-collapse" id="example-navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    配置<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="/msg/admin/setobject">配置对象信息</a></li>
+                    <li><a href="/msg/admin/setgroup">分配群组</a></li>
+                    <li><a href="/msg/admin/setinterface">配置发送接口</a></li>
+                </ul>
+            </li>
+             <li><a href="msg">查看消息</a></li>
+             <li><a href="#">新增用户</a></li>
+        </ul>
+         <ul class="nav navbar-nav navbar-right">
+         <li><a href="#"  id="logout" >退出</a></li>
+         </ul>
+    </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+	<h4 class="mrg1">首页>新增用户</h4>
+	<hr>
+	<div class="raw">
+		<div class="col-md-11 col-centered">
+		 <div class="panel panel-default  shadow">
+		       <br>
+		       <br>
+				<form  class="form-horizontal"  novalidate>
+                  <div class="form-group">
+                    <label class=" col-md-4 control-label"><span class="red">* </span> 
+                        用户类型：</label>
+
+                    <div class="col-md-4">
+                        <label  class="radio-inline">
+                              <input type="radio" name="choose" value="client">普通用户</label>
+                        <label  class="radio-inline">  
+                            <input type="radio" name="choose" value="admin">管理员用户</label>
+                     </div>
+                  </div>     
+                   
+					  <div id="send" class="form-group">
+                            <label class=" col-md-4 control-label"><span class="red">* </span>用户名：
+                            </label>
+                            <div class="col-md-3">
+						   <input type="text" id="name" class="form-control" >
+                            </div>
+                         </div>		
+                           <div class="form-group">
+                            <label class=" col-md-4 control-label"><span class="red">* </span>密码：
+                            </label>
+                            <div class="col-md-3">
+                               <input type="text" id="passwd" class="form-control" required >
+                            </div>
+                        </div>
+                       <div class="form-group">
+                        <div class="col-md-2 col-md-offset-4">
+                        <input id="addconfirm"  class="btn btn-primary btn-block" type="button" value="保存"  >
+                        </div>
+                        </div>
+					</form>
+					<br>
+					<br>
+				</div>
+			</div>	
+			</div>
+		</div>
+     
+<script src="../scripts/jquery.min.js"></script>
+<script src="../scripts/bootstrap.min.js"></script>
+<script src="../scripts/addcltadm.js"></script>
+</body>
+</html>

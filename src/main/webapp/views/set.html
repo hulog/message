@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="../styles/bootstrap/bootstrap.min.css" rel="stylesheet">
+<link href="../styles/msg.css" rel="stylesheet">
+<title>配置发送接口</title>
+</head>
+<body>
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                data-target="#example-navbar-collapse">
+            <span class="sr-only">切换导航</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">消息发送系统</a>
+    </div>
+    <div class="collapse navbar-collapse" id="example-navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    配置<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="/msg/admin/setobject">配置对象信息</a></li>
+                    <li><a href="/msg/admin/setgroup">分配群组</a></li>
+                    <li><a href="#">配置发送接口</a></li>
+                </ul>
+            </li>
+             <li><a href="msg">查看消息</a></li>
+             <li><a href="adduser">新增用户</a></li>
+        </ul>
+         <ul class="nav navbar-nav navbar-right">
+         <li><a href="#"  id="logout" >退出</a></li>
+         </ul>
+    </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+	<h4 class="mrg1">首页>配置>配置发送接口</h4>
+	<hr>
+	<div class="raw">
+	<div class="col-md-11 col-centered">
+        <div class="panel panel-default  shadow">
+          <br>
+          <br>
+          <div class="raw">
+	      <div class="col-md-11 col-centered">
+			<div class="tabbable" id="tabs-780116">
+					<ul class="nav nav-tabs">
+						<li  class="active"><a id="weixin" href="#wchat" data-toggle="tab">微信接口</a></li>
+						<li ><a id="youxiang" href="#email" data-toggle="tab">邮箱接口</a></li>
+						<li ><a id="duanxin" href="#sms" data-toggle="tab">短信接口</a></li>
+					</ul>
+					<br>
+					<br>
+					<div class="tab-content">
+						<div class="tab-pane active" id="wchat">
+						   <form class="form-horizontal" role="form" novalidate>
+								<div class="form-group">
+									<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>接口URL： </label>
+									<div class="col-md-6">
+									   <input id="wurl" type="text" name="wurl"  class="form-control"  required>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>微信帐号： </label>
+									<div class="col-md-6">
+									   <input id="wname" type="text" name="wname"  class="form-control"  required>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>微信密码： </label>
+									<div class="col-md-6">
+									  <input id="wpassword" type="text" name="wpassword" class="form-control"  required>
+									</div>
+								</div>
+								<div class="form-group">
+								  <div class="col-md-2 col-md-offset-4">
+								    <button id="setwchat" class="btn btn-primary btn-block" >保存</button>
+								  </div>
+						    </div>
+						</form>		
+						</div>
+						
+						<div class="tab-pane" id="email">
+						   <form class="form-horizontal" role="form" novalidate>
+								<div class="form-group">
+									<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>邮箱帐号： </label>
+									<div class="col-md-6">
+									  <input id="ename" type="text" name="ename"  class="form-control"  required>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>邮箱密码： </label>
+									<div class="col-md-6">
+									   <input id="epassword" type="text" name="epassword"  class="form-control"  required>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>邮件主题： </label>
+									<div class="col-md-6">
+									  <input id="title" type="text" name="title" class="form-control"  required>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>邮箱主机地址： </label>
+									<div class="col-md-6">
+									 <input id="host" type="text" name="host"  class="form-control"  required>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>邮箱接口号： </label>
+									<div class="col-md-6">
+									  <input id="port" type="text" name="port"  class="form-control"  required>
+									</div>
+								</div>
+								<div class="form-group">
+								  <div class="col-md-2 col-md-offset-4">
+								    <button id="setemail" class="btn btn-primary btn-block" >保存</button>
+								  </div>
+						    </div>
+						</form>		
+						</div>
+
+						<div class="tab-pane" id="sms">
+							<p>暂无</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+	 </div>
+	</div>
+	</div>
+	</div>
+	
+<script src="../scripts/jquery.min.js"></script>
+<script src="../scripts/bootstrap.min.js"></script>
+<script src="../scripts/set.js"></script>
+</body>
+</html>

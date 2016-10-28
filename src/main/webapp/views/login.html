@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="/msg/styles/bootstrap/bootstrap.min.css" rel="stylesheet">
+<link href="/msg/styles/msg.css" rel="stylesheet">
+<title>普通用户登录</title>
+</head>
+<body>
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                data-target="#example-navbar-collapse">
+            <span class="sr-only">切换导航</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">消息发送系统</a>
+    </div>
+    <div class="collapse navbar-collapse" id="example-navbar-collapse">
+         <ul class="nav navbar-nav navbar-right">
+         <li><a href="./" >回到入口</a></li>
+         </ul>
+    </div>
+    </div>
+</nav>
+
+
+<div class="container">
+<br>
+<br>
+<br>
+    <div class="raw">
+    <div class="col-md-5 col-centered">
+     <div class="panel panel-default  shadow radius">
+     <div class="panel-body">
+             <br>
+             <br>
+             <br>
+                <div class="col-md-9 col-centered">
+                <img class="img-responsive" src="/msg/images/logo.png">
+               </div>
+               <br>
+               <br>
+               <br>
+                    <form class="form" id="frmUserLogin" >
+                        <div class="form-group">
+                            <div class="col-md-11 col-centered">
+                                <div class="input-group hundred">
+                                    <span class="input-group-addon"><span
+                                        class="glyphicon glyphicon-user"></span></span> 
+                                        <input id="cname" type="text"  class="form-control input-lg" placeholder="普通用户名">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-11 col-centered">
+                                <div class="input-group hundred">
+                                    <span class="input-group-addon"><span
+                                        class="glyphicon glyphicon-lock"></span></span>
+                                        <input id="cpwd" type="password" class="form-control input-lg" placeholder="密码">
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <div class="col-md-11 col-centered">
+                                  <input id="btnLogin" type="button" value="登录"  class="btn btn-lg btn-block btn-primary " >
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                    </form>
+            </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        
+<script src="/msg/scripts/jquery.min.js"></script>
+<script src="/msg/scripts/bootstrap.min.js"></script>
+<script src="/msg/scripts/login.js"></script>
+</body>
+</html>

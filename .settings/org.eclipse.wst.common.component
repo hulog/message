@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="msg">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
+=======
+>>>>>>> b42b36b134e7aa0c5e221286ba72938fa9680d72
+>>>>>>> 063d194f4694a01f213aae2bccf80bb27e847827
+        <property name="context-root" value="msg"/>
+        <property name="java-output-path" value="/msg/target/classes"/>
+    </wb-module>
+</project-modules>

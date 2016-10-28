@@ -1,0 +1,134 @@
+ <!DOCTYPE html>
+<html  lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="../styles/bootstrap/bootstrap.min.css" rel="stylesheet">
+<link href="../styles/msg.css" rel="stylesheet">
+<title>消息发送系统首页</title>
+</head>
+<body>
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                data-target="#example-navbar-collapse">
+            <span class="sr-only">切换导航</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">消息发送系统</a>
+    </div>
+    <div class="collapse navbar-collapse" id="example-navbar-collapse">
+         <ul class="nav navbar-nav navbar-right">
+         <li><a href="#"  id="logout" >退出</a></li>
+         </ul>
+    </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+<br>
+<br>
+	<div class="raw">
+		<div class="col-md-11 col-centered">
+		  <div class="panel panel-default  shadow">
+		       <br>
+		       <br>
+				<form  class="form-horizontal"  novalidate>
+                  <div class="form-group">
+                    <label class=" col-md-4 control-label"><span class="red">* </span> 
+                        发送通道：</label>
+                    <div class="col-md-4">
+                        <label  class="checkbox-inline">
+                             <input name="msgType"  type="checkbox" value=1 >微信</label>
+                        <label  class="checkbox-inline">  
+                            <input name="msgType"  type="checkbox" value=2 >邮箱</label>
+                         <label  class="checkbox-inline">  
+                            <input  name="msgType"  type="checkbox" value=3 >短信</label>
+                     </div>
+                  </div>     
+                   <div class="form-group">
+                            <label class=" col-md-4 control-label"><span class="red">* </span>发送方式：
+                            </label>
+                            <div class="col-md-2">
+                                <select id="sel" class="form-control">
+                                     <option value="0" selected="selected">---请选择---</option> 
+                                     <option value="1">个人</option> 
+                                     <option value="2">群组</option> 
+                                 </select>
+                            </div>
+                       </div>
+					  <div id="send" class="form-group">
+                            <label class=" col-md-4 control-label"><span class="red">* </span>发送对象：
+                            </label>
+                            <div class="col-md-6">
+                         <div class="input-group" style="width: 100%">
+							<span id="showto" class="form-control" ></span>
+							<span class="input-group-btn"> 
+							    <button id ="sendto" type="button"  class="btn btn-success" data-toggle="modal" data-target="#addModal" >选取</button>
+							</span>
+					   	 </div>
+
+                            </div>
+                         </div>		
+                           <div class="form-group">
+                            <label class=" col-md-4 control-label"><span class="red">* </span>消息内容：
+                            </label>
+                            <div class="col-md-6">
+                                <textarea id="context" class="form-control" rows="5"  required ></textarea>
+                            </div>
+                        </div>
+                       <div class="form-group">
+                        <div class="col-md-2 col-md-offset-4">
+                        <input id="submit"  class="btn btn-primary btn-block" type="button" value="提交"  >
+                        </div>
+                        </div>
+					</form>
+					<br>
+					<br>
+				</div>
+			</div>	
+			</div>
+		</div>
+		
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content ">
+			<div class="modal-header">
+				<h4 class="modal-title">选择发送对象</h4>
+			</div>
+			<form class="form" role="form" novalidate>
+				<div class="modal-body">
+					<div class="form-group">
+						<label class=" control-label"> <span class="red">*&nbsp;</span>选择对象： </label>
+						   <table class="table  table-hover text-center" >
+					            <thead>
+						           <tr>
+							          <th class="text-center "><input type="checkbox" id="selectall"></th>
+							          <th id="one" class="text-center"></th>
+									  <th id="two" class="text-center"></th>
+									</tr>
+								</thead>
+								<tbody  id="list">	
+								</tbody>
+							</table>
+					</div>
+               </div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button id="addconfirm" class="btn btn-primary" data-dismiss="modal">保存</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script src="../scripts/jquery.min.js"></script>
+<script src="../scripts/bootstrap.min.js"></script>
+<script src="../scripts/sendmsg.js"></script>
+</body>
+</html>

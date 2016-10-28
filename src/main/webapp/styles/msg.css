@@ -1,0 +1,108 @@
+.home-row {
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+.home-row-content {
+  background: #fff;
+}
+
+p {
+  text-indent: 2em;
+
+}
+
+.red{
+    color: #a94442;
+}
+
+.danger{
+     background-color: #d9534f;
+}
+
+.col-centered {
+  float: none;
+  margin: 0 auto;
+}
+
+.grey {
+	/* background-color: #f2eeff; */
+	/* background-color: #eaedf0;  */
+	background-color: #fcfcfc; 
+	/* background-color: #888; */
+}
+
+
+.table-hover > tbody > tr:hover > td,
+.table-hover > tbody > tr:hover > th {
+background-color: #e1e1ff;
+}
+
+.ul-hover  > li:hover 
+ {
+background-color: #e1e1ff;
+}
+
+.shadow {
+	  box-shadow: 3px 3px 3px 2px #d7e4ed;
+}
+
+
+.five{
+	width: 5%;
+}
+
+.hundred {
+	width: 100%;
+}
+
+.brickwall {
+	 background-image: url('/./images/brickwall.png');
+	 background-repeat: repeat; 
+}
+
+.radius {
+	border-radius: 15px;
+}
+
+.mrg1 {
+	margin-top: 20px;
+}
+
+.bg1 {
+	background-color: #fbfbfb;
+}
+
+hr {
+	margin-top: 10px;
+	margin-bottom: 40px;
+    border-top:2px solid #eee;
+}
+
+h5 a {
+	padding:4px;
+}
+
+h5 a:hover {
+	text-decoration: none;
+	background-color: #d7e4ed;
+}
+
+.btn {
+	margin: 0 3px;
+}
+
+.help-block {
+  margin-top: none;
+  margin-bottom: -5px;;
+  font-size: 12px;;
+}
+
+.has-success .control-label,
+.has-error .control-label {
+	color: inherit;
+}
+
+div[ class="container-fluid"]  div[class="row"]{
+	margin: 100px;	
+}
