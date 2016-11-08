@@ -1,12 +1,12 @@
 package com.upsmart.message.service;
 
 import java.util.Date;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.upsmart.message.domain.Client;
 import com.upsmart.message.repository.ClientRepository;
@@ -44,7 +44,6 @@ public class ClientServiceImp implements ClientService {
     }
 
     @Override
-    @Transactional
     public boolean deleteClient(String[] strs) {
         // List<Integer> cids = new ArrayList<Integer>();
         try {
@@ -57,5 +56,10 @@ public class ClientServiceImp implements ClientService {
             e.printStackTrace();
             return false;
         }
+    }
+
+    @Override
+    public List<Client> queryAllClient() {
+        return this.clientRepository.findAll();
     }
 }

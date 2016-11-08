@@ -52,15 +52,25 @@ public class ClientController {
     @ResponseBody
     public BaseMessage delete(@RequestBody String[] cids) {
         BaseMessage msg = new BaseMessage();
-        if(null == cids || cids.length == 0){
+        if (null == cids || cids.length == 0) {
             ResponseUtil.buildResMsg(msg, StatusCode.ERROR_INPUT);
             return msg;
         }
-        if(this.clientService.deleteClient(cids)){
+        if (this.clientService.deleteClient(cids)) {
             ResponseUtil.buildResMsg(msg, StatusCode.SUCCESS);
             return msg;
         }
         ResponseUtil.buildResMsg(msg, StatusCode.ERROR);
+        return msg;
+    }
+
+    // query all users
+    @RequestMapping(value = "query", method = RequestMethod.GET)
+    @ResponseBody
+    public BaseMessage queryAllClient() {
+        BaseMessage msg = new BaseMessage();
+        msg.setData(this.clientService.queryAllClient());
+        ResponseUtil.buildResMsg(msg, StatusCode.SUCCESS);
         return msg;
     }
 }

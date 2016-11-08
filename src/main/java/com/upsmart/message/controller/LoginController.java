@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.method.annotation.SessionAttributesHandler;
 
 import com.upsmart.message.constant.GlobalConstants;
 import com.upsmart.message.domain.Admin;
@@ -71,6 +70,7 @@ public class LoginController {
 
     @Autowired
     private LoginServiceImp loginServiceImpl;
+
     // 登录
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody

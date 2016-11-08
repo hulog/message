@@ -1,6 +1,10 @@
 package com.upsmart.message.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
+
+import com.upsmart.message.domain.Client;
 
 /**
  * Copyright (C), 2016, 银联智惠信息服务（上海）有限公司
@@ -12,6 +16,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface ClientService {
+
     public String insertclient(String cname, String cpassword);
-    public boolean deleteClient(String [] cids);
+
+    public boolean deleteClient(String[] cids);
+
+    public List<Client> queryAllClient();
 }
