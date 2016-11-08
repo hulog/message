@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.upsmart.message.domain.Client;
 import com.upsmart.message.repository.ClientRepository;
@@ -18,14 +19,14 @@ import com.upsmart.message.util.Md5;
  * @author aidar
  * @version 0.0.1
  * @desc controller
- * @date 2016年10月19日 
+ * @date 2016年10月19日
  */
 @Service
 public class ClientServiceImp implements ClientService {
     private static Logger logger = LoggerFactory.getLogger(ClientServiceImp.class);
     @Autowired
     private ClientRepository clientRepository;
-    
+
     @Override
     public String insertclient(String cname, String cpassword) {
         Client client = new Client();
@@ -42,4 +43,19 @@ public class ClientServiceImp implements ClientService {
         return "success";
     }
 
+    @Override
+    @Transactional
+    public boolean deleteClient(String[] strs) {
+        // List<Integer> cids = new ArrayList<Integer>();
+        try {
+            for (String s : strs) {
+                this.clientRepository.delete(Integer.parseInt(s));
+            }
+            logger.warn("delete client(s) successful......");
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

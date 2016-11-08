@@ -19,7 +19,8 @@ public enum StatusCode {
     VERIFICATION_CODE_ERROR("00002","验证码出错"),
     PWD_CONFIRM("00003","密码输入不一致"),
     ERROR("00004", "操作出错,"),
-    SYSTEM_ERROR("20101", "系统异常");
+    SYSTEM_ERROR("20101", "系统异常"),
+    ERROR_INPUT("00005","INPUT ERROR");
 
     private String code;
     private String msg;
