@@ -64,11 +64,11 @@ public class SetObjectController{
     
 	@RequestMapping(value = "add", method = RequestMethod.POST) 
     @ResponseBody
-    public BaseMessage addObject (@RequestParam(value="oname",required=false) String oname, 
+    public BaseMessage addObject (@RequestParam(value="oname",required=true) String oname, 
     		@RequestParam(value="brand",required=false) String brand,
-    		@RequestParam(value="wechat",required=false) String wechat,
-    		@RequestParam(value="email",required=false)String email,
-    		@RequestParam(value="message",required=false) String message) {
+    		@RequestParam(value="wechat",required=true) String wechat,
+    		@RequestParam(value="email",required=true)String email,
+    		@RequestParam(value="message",required=true) String message) {
 		BaseMessage msg = new BaseMessage();
 		try{	
 			this.sendObjectServiceImp.addObject(oname, brand, wechat, email, message);

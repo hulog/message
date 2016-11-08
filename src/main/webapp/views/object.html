@@ -4,17 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="../styles/bootstrap/bootstrap.min.css" rel="stylesheet">
-<link href="../styles/pagination.css" rel="stylesheet">
 <link href="../styles/msg.css" rel="stylesheet">
-<title>配置对象信息</title>
+<link href="../styles/pagination.css" rel="stylesheet">
+<title>配置对象</title>
 </head>
 <body>
 
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse"
-                data-target="#example-navbar-collapse">
+                data-target="#myNavbar">
             <span class="sr-only">切换导航</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -22,31 +22,22 @@
         </button>
         <a class="navbar-brand" href="#">消息发送系统</a>
     </div>
-    <div class="collapse navbar-collapse" id="example-navbar-collapse">
-        <ul class="nav navbar-nav">
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    配置<b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">配置对象信息</a></li>
-                    <li><a href="/msg/admin/setgroup">分配群组</a></li>
-                    <li><a href="/msg/admin/setinterface">配置发送接口</a></li>
-                </ul>
-            </li>
-             <li><a href="msg">查看消息</a></li>
-             <li><a href="adduser">新增用户</a></li>
-        </ul>
+    <div class="collapse navbar-collapse" id="myNavbar">
          <ul class="nav navbar-nav navbar-right">
-         <li><a href="#"  id="logout" >退出</a></li>
+             <li class="active"><a href="#">配置对象</a></li>
+              <li><a href="/msg/admin/setgroup">分配群组</a></li>
+              <li><a href="/msg/admin/setinterface">配置接口</a></li>
+              <li><a href="msg">查看消息</a></li>
+              <li><a href="adduser">新增用户</a></li>
+              <li><a href="#"  id="logout" >退出</a></li>
          </ul>
     </div>
     </div>
 </nav>
 
-<div class="container-fluid">
-	<h4 class="mrg1">首页>配置>配置对象信息</h4>
-	<hr>
+
+<div class="jumbotron vertical-center">
+<div class="container">
 	<div class="raw">
 		<div class="col-md-11 col-centered">
 			
@@ -83,10 +74,11 @@
 					<tbody id="objecttable">	
 					</tbody>
 				</table>
-				<div id="pagination-container"></div>
 		</div>
+		<div class="pull-right" id="pagination-container"></div>
 		</div>
 	</div>
+</div>
 </div>
 			
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog"
@@ -102,37 +94,42 @@
 					<div class="form-group">
 						<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>对象名称： </label>
 						<div class="col-md-6">
-						   <input type="text" id="addoname" class="form-control"  required>
+						   <input type="text" id="addoname" class="form-control" onblur="checkName(this.value)" required>
+						   <p class="help-block red" id="name-tip"></p>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>所属部门： </label>
 						<div class="col-md-6">
-						   <input type="text" id="addbrand" class="form-control"  required>
+						   <input type="text" id="addbrand" class="form-control" onblur="checkBranch(this.value)" required>
+						   <p class="help-block red" id="branch-tip"></p>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>微信帐号： </label>
 						<div class="col-md-6">
-						   <input type="text" id="addwechat" class="form-control"  required>
+						   <input type="text" id="addwechat" class="form-control" onblur="checkWchat(this.value)" required>
+						   <p class="help-block red" id="wchat-tip"></p>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>邮箱帐号： </label>
 						<div class="col-md-6">
-						   <input type="text" id="addemail" class="form-control"  required>
+						   <input type="text" id="addemail" class="form-control" onblur="checkEmail(this.value)" required>
+						   <p class="help-block red" id="email-tip"></p>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>手机号码： </label>
 						<div class="col-md-6">
-						   <input type="text" id="addmessage" class="form-control"  required>
+						   <input type="text" id="addmessage" class="form-control" onblur="checkPhone(this.value)" required>
+						   <p class="help-block red"  id="phone-tip"></p>
 						</div>
 					</div>
                </div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-					<button id="addconfirm" class="btn btn-primary" data-dismiss="modal">保存</button>
+					<button id="addconfirm" class="btn btn-primary" data-dismiss="modal" disabled>保存</button>
 				</div>
 			</form>
 		</div>
@@ -152,37 +149,42 @@
 					<div class="form-group">
 						<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>对象名称： </label>
 						<div class="col-md-6">
-						   <input type="text" id="modoname" class="form-control"  required>
+						   <input type="text" id="modoname" class="form-control" onblur="checkName(this.value)" required>
+						   <p class="help-block red" id="name-tip2"></p>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>所属部门： </label>
 						<div class="col-md-6">
-						   <input type="text" id="modbrand" class="form-control"  required>
+						   <input type="text" id="modbrand" class="form-control" onblur="checkBranch(this.value)" required>
+						   <p class="help-block red" id="branch-tip2"></p>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>微信帐号： </label>
 						<div class="col-md-6">
-						   <input type="text" id="modwechat" class="form-control"  required>
+						   <input type="text" id="modwechat" class="form-control" onblur="checkWchat(this.value)" required>
+						   <p class="help-block red" id="wchat-tip2"></p>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>邮箱帐号： </label>
 						<div class="col-md-6">
-						   <input type="text" id="modemail" class="form-control"  required>
+						   <input type="text" id="modemail" class="form-control" onblur="checkEmail(this.value)" required>
+						   <p class="help-block red" id="email-tip2"></p>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>手机号码： </label>
 						<div class="col-md-6">
-						   <input type="text" id="modmessage" class="form-control"  required>
+						   <input type="text" id="modmessage" class="form-control" onblur="checkPhone(this.value)" required>
+						   <p class="help-block red"  id="phone-tip2"></p>
 						</div>
 					</div>
                </div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-					<button id="modconfirm" class="btn btn-primary" data-dismiss="modal">保存</button>
+					<button id="modconfirm" class="btn btn-primary" data-dismiss="modal" disabled>保存</button>
 				</div>
 			</form>
 		</div>
@@ -213,10 +215,9 @@
 </div>
 </div>
 
-
 <script src="../scripts/jquery.min.js"></script>
 <script src="../scripts/bootstrap.min.js"></script>
-<script src="../scripts/pagination.js"></script>
 <script src="../scripts/object.js"></script>
+<script src="../scripts/pagination.js"></script>
 </body>
 </html>

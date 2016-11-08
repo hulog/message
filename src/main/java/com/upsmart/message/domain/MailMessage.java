@@ -2,6 +2,8 @@ package com.upsmart.message.domain;
 
 import java.io.Serializable;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Copyright (C), 2015, 银联智惠信息服务（上海）有限公司
  *
@@ -10,6 +12,7 @@ import java.io.Serializable;
  * @desc 发送邮件返回的message
  * @date 3/9/16
  */
+@Component
 public class MailMessage implements Serializable {
 
     private static final long serialVersionUID = -4171603668519675599L;

@@ -24,7 +24,7 @@ public interface SendObjectRepository extends PagingAndSortingRepository<SendObj
 	List<SendObject> findAll();
 	
 	@Modifying
-    @Query(value = "select o.* from sendobject o  join objectgroup og on o.oid=og.oid where og.gid=?1", nativeQuery = true)
+    @Query(value = "select o.* from object o  join objectgroup og on o.oid=og.oid where og.gid=?1", nativeQuery = true)
     public List<SendObject> findByGid(int gid);
 	
 	@Query(value = "select * from object so where so.oid=?1", nativeQuery=true)

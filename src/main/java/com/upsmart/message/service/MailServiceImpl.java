@@ -1,12 +1,8 @@
 package com.upsmart.message.service;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
 
-import javax.activation.DataHandler;
-import javax.activation.FileDataSource;
 import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -19,19 +15,15 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-import javax.mail.internet.MimeUtility;
 
 import org.apache.commons.lang.time.StopWatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.FileCopyUtils;
 
-import com.upsmart.message.config.CommonConfig;
 import com.upsmart.message.constant.GlobalConstants;
 import com.upsmart.message.domain.MailMessage;
-import com.upsmart.message.dto.FileDto;
 import com.upsmart.message.dto.MailDto;
 
 /**
@@ -43,7 +35,7 @@ import com.upsmart.message.dto.MailDto;
  * @date 3/8/16
  */
 @Service
-public class MailServiceImpl implements MailService {
+public class MailServiceImpl {
 
     private static Logger logger = LoggerFactory.getLogger(MailServiceImpl.class);
 
@@ -51,15 +43,14 @@ public class MailServiceImpl implements MailService {
     // 发送邮件session
     private transient Session session;
     private MimeMessage message;
-    @Autowired
-    private CommonConfig commonConfig;
+
+    // private CommonConfig commonConfig;
 
     /**
      * 发送邮件
      * 
      * @param mailDto
      */
-    @Override
     public MailMessage sendMail(MailDto mailDto) {
         logger.info("send mail start...");
         MailMessage msg = new MailMessage();
@@ -85,9 +76,10 @@ public class MailServiceImpl implements MailService {
             contentPart.setText(mailDto.getContent());
             multipart.addBodyPart(contentPart);
             // 添加附件
-            if (null != mailDto.getFiles() && mailDto.getFiles().size() > 0) {
-                this.addTach(mailDto.getFiles(), multipart, msg);
-            }
+            // if (null != mailDto.getFiles() && mailDto.getFiles().size() > 0)
+            // {
+            // this.addTach(mailDto.getFiles(), multipart, msg);
+            // }
             message.setContent(multipart);
             message.saveChanges();
             // 连接服务器的邮箱
@@ -127,16 +119,17 @@ public class MailServiceImpl implements MailService {
             logger.error("邮件发送失败");
             e.printStackTrace();
             return msg;
-        } catch (IOException e) {
-            sw.stop();
-            logger.info("send mail end, and it takes " + sw.getTime() + " ms");
-            msg.setCost(sw.getTime());
-            msg.setCode(MailMessage.MESSAGE_SEND_FAILED);
-            msg.setDesc(MailMessage.MESSAGE_ATTACH_FAILED_MSG);
-            logger.error("附件添加失败");
-            e.printStackTrace();
-            return msg;
         }
+        // catch (IOException e) {
+        // sw.stop();
+        // logger.info("send mail end, and it takes " + sw.getTime() + " ms");
+        // msg.setCost(sw.getTime());
+        // msg.setCode(MailMessage.MESSAGE_SEND_FAILED);
+        // msg.setDesc(MailMessage.MESSAGE_ATTACH_FAILED_MSG);
+        // logger.error("附件添加失败");
+        // e.printStackTrace();
+        // return msg;
+        // }
     }
 
     /**
@@ -145,18 +138,21 @@ public class MailServiceImpl implements MailService {
      * @param files
      * @param multipart
      */
-    public void addTach(List<FileDto> files, Multipart multipart, MailMessage msg)
-            throws IOException, MessagingException {
-        for (FileDto file : files) {
-            MimeBodyPart mailArchieve = new MimeBodyPart();
-            File f = new File(this.commonConfig.getMailSavePath() + file.getFileName());
-            FileCopyUtils.copy(file.getFileBytes(), f);
-            FileDataSource fd = new FileDataSource(f);
-            mailArchieve.setDataHandler(new DataHandler(fd));
-            mailArchieve.setFileName(MimeUtility.encodeText(fd.getName(), "utf-8", "B"));
-            multipart.addBodyPart(mailArchieve);
-        }
-    }
+    // public void addTach(List<FileDto> files, Multipart multipart, MailMessage
+    // msg)
+    // throws IOException, MessagingException {
+    // for (FileDto file : files) {
+    // MimeBodyPart mailArchieve = new MimeBodyPart();
+    // File f = new File(this.commonConfig.getMailSavePath() +
+    // file.getFileName());
+    // FileCopyUtils.copy(file.getFileBytes(), f);
+    // FileDataSource fd = new FileDataSource(f);
+    // mailArchieve.setDataHandler(new DataHandler(fd));
+    // mailArchieve.setFileName(MimeUtility.encodeText(fd.getName(), "utf-8",
+    // "B"));
+    // multipart.addBodyPart(mailArchieve);
+    // }
+    // }
 
     /**
      * 邮箱初始化
@@ -167,11 +163,11 @@ public class MailServiceImpl implements MailService {
         if (null == props) {
             props = new Properties();
         }
-        String path = this.commonConfig.getMailSavePath();
-        File file = new File(path);
-        if (!file.exists()) {
-            file.mkdirs();
-        }
+        // String path = this.commonConfig.getMailSavePath();
+        // File file = new File(path);
+        // if (!file.exists()) {
+        // file.mkdirs();
+        // }
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.port", mailDto.getPort().trim());
         props.put("mail.smtp.host", mailDto.getSmtpHost().trim());

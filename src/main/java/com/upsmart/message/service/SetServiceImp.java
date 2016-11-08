@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.upsmart.message.constant.GlobalConstants;
 import com.upsmart.message.domain.EInterface;
 import com.upsmart.message.repository.EInterfaceRepository;
 
@@ -21,17 +22,22 @@ public class SetServiceImp implements SetService {
 
     @Autowired
     private EInterfaceRepository eInterfaceRepository;
-    
+
     private static Logger logger = LoggerFactory.getLogger(SetService.class);
-    
+
+    @Override
     public String setwchat(String url, String wname, String wpassword) {
         String result = null;
+        EInterface eInterface = this.eInterfaceRepository.findByInftype(GlobalConstants.WEIXIN);
+        if (null == eInterface) {
+            eInterface = new EInterface();
+            eInterface.setInftype(GlobalConstants.WEIXIN);
+        }
         try {
-            EInterface eInterface = new EInterface();
+            // TODO 取出后修改，没有则新增
             eInterface.setInfname(wname);
             eInterface.setInfurl(url);
             eInterface.setInfpassword(wpassword);
-            eInterface.setInftype(1);
             this.eInterfaceRepository.save(eInterface);
         } catch (Exception e) {
             logger.error("存储微信设置失败");
@@ -39,17 +45,21 @@ public class SetServiceImp implements SetService {
         }
         return result;
     }
-    
+
+    @Override
     public String setemail(String title, String host, String port, String ename, String epassword) {
         String result = null;
+        EInterface eInterface = this.eInterfaceRepository.findByInftype(GlobalConstants.EMAIL);
+        if (null == eInterface) {
+            eInterface = new EInterface();
+            eInterface.setInftype(GlobalConstants.EMAIL);
+        }
         try {
-            EInterface eInterface = new EInterface();
             eInterface.setHost(host);
             eInterface.setTitle(title);
             eInterface.setInfname(ename);
             eInterface.setInfpassword(epassword);
             eInterface.setPort(port);
-            eInterface.setInftype(2);
             this.eInterfaceRepository.save(eInterface);
         } catch (Exception e) {
             result = "存储邮箱信息失败";
@@ -58,4 +68,14 @@ public class SetServiceImp implements SetService {
         return result;
     }
 
+    @Override
+    public EInterface findConfig(int inftype) {
+        EInterface e = null;
+        try {
+            e = this.eInterfaceRepository.findByInftype(inftype);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return e;
+    }
 }

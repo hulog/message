@@ -3,6 +3,8 @@ package com.upsmart.message.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -12,17 +14,16 @@ public class UserLoginInterceptor implements HandlerInterceptor {
 
     // private final String ADMINSESSION = "adminsession";
 
+    private static Logger logger = LoggerFactory.getLogger(UserLoginInterceptor.class);
+
     // 拦截前处理
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object obj) throws Exception {
         Object sessionObj = request.getSession().getAttribute(GlobalConstants.ID);
         if (sessionObj != null) {
-            System.out.println("url>>>" + request.getRequestURL().toString());
-            System.out.println("获取到了session！");
             return true;
         }
-        System.out.println("url>>>" + request.getRequestURL().toString());
         response.sendRedirect(request.getContextPath()+"/index.html");
-        System.out.println("未获取到session！");
+        logger.info(request.getRemoteAddr() + "试图以用户身份登陆，被成功拦截");
         return false;
     }
 

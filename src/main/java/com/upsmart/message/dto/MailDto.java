@@ -3,6 +3,8 @@ package com.upsmart.message.dto;
 import java.io.Serializable;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Copyright (C), 2015, 银联智惠信息服务（上海）有限公司
  *
@@ -11,6 +13,7 @@ import java.util.List;
  * @desc 提供发送邮件服务接口参数dto
  * @date 3/7/16
  */
+@Component
 public class MailDto implements Serializable {
 
     private static final long serialVersionUID = 7447491327917924454L;

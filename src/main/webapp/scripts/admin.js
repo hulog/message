@@ -11,7 +11,7 @@
             
             postData(user, function(data) {
                  if(data.code == "00000") {
-                    window.location.href="/msg/admin/setinterface";
+                    window.location.href="/msg/admin/setobject";
                 } else {
                     alert(data.msg);
                 }

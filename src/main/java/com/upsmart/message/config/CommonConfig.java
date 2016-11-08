@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class CommonConfig {
 
-	public String getMailSavePath() {
-		return "/home/upsmart/workspace/eclipse_workspace/bookshare-demo.git/src/main/resources/properties/";
-	}
+//	public String getMailSavePath() {
+//		return "/home/upsmart/workspace/eclipse_workspace/bookshare-demo.git/src/main/resources/properties/";
+//	}
 }

@@ -1,4 +1,5 @@
 package com.upsmart.message.dto;
+
 /**
  * Copyright (C), 2015, 银联智惠信息服务（上海）有限公司
  *
@@ -9,14 +10,20 @@ package com.upsmart.message.dto;
  */
 public class EinterfaceDto {
     private int infid;
-    
+
     private String infurl;
-    
+
     private String infname;
-    
+
     private String infpassword;
-    
+
     private int inftype;
+
+    private String title;
+    
+    private String host;
+    
+    private String port;
 
     public int getInfid() {
         return infid;
@@ -56,5 +63,29 @@ public class EinterfaceDto {
 
     public void setInftype(int inftype) {
         this.inftype = inftype;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getHost() {
+        return host;
+    }
+
+    public void setHost(String host) {
+        this.host = host;
+    }
+
+    public String getPort() {
+        return port;
+    }
+
+    public void setPort(String port) {
+        this.port = port;
     }
 }

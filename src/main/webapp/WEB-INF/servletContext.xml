@@ -32,6 +32,7 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/admin/**" /> 
 			<mvc:exclude-mapping path="/message/send/**" />
+			<mvc:exclude-mapping path="/search/**" />
 			<mvc:exclude-mapping path="/admin" />
 			<mvc:exclude-mapping path="/scripts/**" />
 			<mvc:exclude-mapping path="/styles/**" />
@@ -43,6 +44,7 @@
 		<!-- 用户登录拦截 -->
 			<mvc:mapping path="/**" /> 
 			<mvc:exclude-mapping path="/message/send/**" />
+			<mvc:exclude-mapping path="/search/**" />
 			<mvc:exclude-mapping path="/login/**" />
 			<mvc:exclude-mapping path="/index.html" />
 			<mvc:exclude-mapping path="/user" />

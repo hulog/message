@@ -48,7 +48,7 @@ public class Interface {
         BaseMessage msg = new BaseMessage();
         if (loginService.check(cname, password) > 0) {
             try {
-                if (null == this.interfaceService.search(type, searchid)) {
+                if (null != this.interfaceService.search(type, searchid)) {
                     ResponseUtil.buildResMsg(msg, StatusCode.SUCCESS);
                     msg.setData(this.interfaceService.search(type, searchid));
                 } else {

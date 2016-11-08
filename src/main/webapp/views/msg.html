@@ -4,17 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="../styles/bootstrap/bootstrap.min.css" rel="stylesheet">
-<link href="../styles/pagination.css" rel="stylesheet">
 <link href="../styles/msg.css" rel="stylesheet">
+<link href="../styles/pagination.css" rel="stylesheet">
 <title>查看消息</title>
 </head>
 <body>
 
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse"
-                data-target="#example-navbar-collapse">
+                data-target="#myNavbar">
             <span class="sr-only">切换导航</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -22,38 +22,42 @@
         </button>
         <a class="navbar-brand" href="#">消息发送系统</a>
     </div>
-    <div class="collapse navbar-collapse" id="example-navbar-collapse">
-        <ul class="nav navbar-nav">
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    配置<b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="/msg/admin/setobject">配置对象信息</a></li>
-                    <li><a href="/msg/admin/setgroup">分配群组</a></li>
-                    <li><a href="/msg/admin/setinterface">配置发送接口</a></li>
-                </ul>
-            </li>
-             <li><a href="#">查看消息</a></li>
-             <li><a href="adduser">新增用户</a></li>
-        </ul>
+    <div class="collapse navbar-collapse" id="myNavbar">
          <ul class="nav navbar-nav navbar-right">
-         <li><a href="#"  id="logout" >退出</a></li>
+              <li><a href="/msg/admin/setobject">配置对象</a></li>
+              <li><a href="/msg/admin/setgroup">分配群组</a></li>
+              <li><a href="/msg/admin/setinterface">配置接口</a></li>
+              <li  class="active"><a href="#">查看消息</a></li>
+             <li><a href="adduser">新增用户</a></li>      
+              <li><a href="#"  id="logout" >退出</a></li>
          </ul>
     </div>
     </div>
 </nav>
 
-<div class="container-fluid">
-	<h4 class="mrg1">首页>查看消息</h4>
-	<hr>
+<div class="jumbotron vertical-center">
+<div class="container">
 	<div class="raw">
 		<div class="col-md-11 col-centered">
 			
 		<div class="raw">
-		<div class="col-md-3 col-md-offset-6 text-right">
-			<button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" >删除</button>
-         </div>
+		<div class="col-md-6">
+		      <h5>
+					 <strong>时间：</strong> 
+							<a onclick="changetime(99999)" href="#">全部</a>
+							<a onclick="changetime(1)" href="#">一个月</a>
+							<a onclick="changetime(3)" href="#">三个月</a>
+							<a onclick="changetime(12)" href="#">一年</a>
+		       </h5>
+			   <h5>
+					   <strong>通道：</strong> 
+							<a onclick="changetype('all')" href="#">全部</a>
+							<a onclick="changetype('微信')" href="#">微信</a>
+							<a onclick="changetype('邮箱')" href="#">邮箱</a>
+							 <a onclick="changetype('短信')" href="#">短信</a>
+				</h5>
+		</div>
+		
 			<div class="col-md-3 pull-right">
 				<div class="input-group" style="width: 100%">
 					  <input type="text" id="searchword" class="form-control"  placeholder="不限"> 
@@ -62,10 +66,15 @@
 							</span>
 						</div>
 					</div>
+			   <div class="col-md-1 pull-right">
+			          <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" >删除</button>
+               </div>
 			</div>
-		   <br>
-		   <br>
-		   <br>
+			<br>
+			<br>
+			<br>
+			<br>
+			
 		  <div class="panel panel-default  shadow">
 				<table class="table  table-hover text-center" >
 					<thead>
@@ -81,10 +90,11 @@
 					<tbody id="msgtable">	
 					</tbody>
 				</table>
-					<div id="pagination-container"></div>
 		</div>
+		<div class="pull-right" id="pagination-container"></div>
 		</div>
 	</div>
+</div>
 </div>
 
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -113,7 +123,7 @@
 
 <script src="../scripts/jquery.min.js"></script>
 <script src="../scripts/bootstrap.min.js"></script>
-<script src="../scripts/pagination.js"></script>
 <script src="../scripts/msg.js"></script>
+<script src="../scripts/pagination.js"></script>
 </body>
 </html>

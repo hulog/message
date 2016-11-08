@@ -5,15 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="../styles/bootstrap/bootstrap.min.css" rel="stylesheet">
 <link href="../styles/msg.css" rel="stylesheet">
-<title>配置发送接口</title>
+<title>配置接口</title>
 </head>
 <body>
 
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse"
-                data-target="#example-navbar-collapse">
+                data-target="#myNavbar">
             <span class="sr-only">切换导航</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -21,34 +21,25 @@
         </button>
         <a class="navbar-brand" href="#">消息发送系统</a>
     </div>
-    <div class="collapse navbar-collapse" id="example-navbar-collapse">
-        <ul class="nav navbar-nav">
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    配置<b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="/msg/admin/setobject">配置对象信息</a></li>
-                    <li><a href="/msg/admin/setgroup">分配群组</a></li>
-                    <li><a href="#">配置发送接口</a></li>
-                </ul>
-            </li>
-             <li><a href="msg">查看消息</a></li>
-             <li><a href="adduser">新增用户</a></li>
-        </ul>
+    <div class="collapse navbar-collapse" id="myNavbar">
          <ul class="nav navbar-nav navbar-right">
-         <li><a href="#"  id="logout" >退出</a></li>
+               <li><a href="/msg/admin/setobject">配置对象</a></li>
+               <li><a href="/msg/admin/setgroup">分配群组</a></li>
+               <li  class="active"><a href="#">配置接口</a></li>       
+               <li><a href="msg">查看消息</a></li>
+               <li><a href="adduser">新增用户</a></li>                      
+               <li><a href="#"  id="logout" >退出</a></li>
          </ul>
     </div>
     </div>
 </nav>
 
-<div class="container-fluid">
-	<h4 class="mrg1">首页>配置>配置发送接口</h4>
-	<hr>
+<div class="jumbotron vertical-center">
+<div class="container">
 	<div class="raw">
 	<div class="col-md-11 col-centered">
         <div class="panel panel-default  shadow">
+          <br>
           <br>
           <br>
           <div class="raw">
@@ -61,30 +52,35 @@
 					</ul>
 					<br>
 					<br>
+					<br>
 					<div class="tab-content">
 						<div class="tab-pane active" id="wchat">
-						   <form class="form-horizontal" role="form" novalidate>
+						<form class="form-horizontal" role="form" novalidate>
 								<div class="form-group">
 									<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>接口URL： </label>
-									<div class="col-md-6">
-									   <input id="wurl" type="text" name="wurl"  class="form-control"  required>
+									<div class="col-md-4">
+									   <input id="wurl" type="text" name="wurl"  class="form-control"  onblur="checkUrl(this.value)"   required>
+									    <p class="help-block red"  id="url-tip"></p>
 									</div>
 								</div>
 								<div class="form-group">
-									<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>微信帐号： </label>
-									<div class="col-md-6">
-									   <input id="wname" type="text" name="wname"  class="form-control"  required>
+									<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>CorpID： </label>
+									<div class="col-md-4">
+									   <input id="wname" type="text" name="wname"  class="form-control"  onblur="checkWname(this.value)"  required>
+									    <p class="help-block red"  id="wname-tip"></p>
 									</div>
 								</div>
 								<div class="form-group">
-									<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>微信密码： </label>
-									<div class="col-md-6">
-									  <input id="wpassword" type="text" name="wpassword" class="form-control"  required>
+									<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>Secret： </label>
+									<div class="col-md-4">
+									  <input id="wpassword" type="text" name="wpassword" class="form-control"  onblur="checkWpasswd(this.value)"  required>
+									   <p class="help-block red"  id="wpasswd-tip"></p>
 									</div>
 								</div>
+								<br>
 								<div class="form-group">
 								  <div class="col-md-2 col-md-offset-4">
-								    <button id="setwchat" class="btn btn-primary btn-block" >保存</button>
+								    <button id="setwchat" class="btn btn-primary btn-block" disabled>保存</button>
 								  </div>
 						    </div>
 						</form>		
@@ -94,37 +90,43 @@
 						   <form class="form-horizontal" role="form" novalidate>
 								<div class="form-group">
 									<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>邮箱帐号： </label>
-									<div class="col-md-6">
-									  <input id="ename" type="text" name="ename"  class="form-control"  required>
+									<div class="col-md-4">
+									  <input id="ename" type="text" name="ename"  class="form-control" onblur="checkEname(this.value)" required>
+									  <p class="help-block red"  id="ename-tip"></p>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>邮箱密码： </label>
-									<div class="col-md-6">
-									   <input id="epassword" type="text" name="epassword"  class="form-control"  required>
+									<div class="col-md-4">
+									   <input id="epassword" type="text" name="epassword"  class="form-control" onblur="checkEpasswd(this.value)" required>
+									   <p class="help-block red"  id="epasswd-tip"></p>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>邮件主题： </label>
-									<div class="col-md-6">
-									  <input id="title" type="text" name="title" class="form-control"  required>
+									<div class="col-md-4">
+									  <input id="title" type="text" name="title" class="form-control" onblur="checkTitle(this.value)" required>
+									  <p class="help-block red"  id="title-tip"></p>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>邮箱主机地址： </label>
-									<div class="col-md-6">
-									 <input id="host" type="text" name="host"  class="form-control"  required>
+									<div class="col-md-4">
+									 <input id="host" type="text" name="host"  class="form-control" onblur="checkHost(this.value)" required>
+									 <p class="help-block red"  id="host-tip"></p>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>邮箱接口号： </label>
-									<div class="col-md-6">
-									  <input id="port" type="text" name="port"  class="form-control"  required>
+									<div class="col-md-4">
+									  <input id="port" type="text" name="port"  class="form-control" onblur="checkPort(this.value)" required>
+									  <p class="help-block red"  id="port-tip"></p>
 									</div>
 								</div>
+								<br>
 								<div class="form-group">
 								  <div class="col-md-2 col-md-offset-4">
-								    <button id="setemail" class="btn btn-primary btn-block" >保存</button>
+								    <button id="setemail" class="btn btn-primary btn-block" disabled>保存</button>
 								  </div>
 						    </div>
 						</form>		
@@ -139,13 +141,16 @@
 		</div>
 		<br>
 		<br>
+		<br>
 	 </div>
+	</div>
 	</div>
 	</div>
 	</div>
 	
 <script src="../scripts/jquery.min.js"></script>
 <script src="../scripts/bootstrap.min.js"></script>
+<script src="../scripts/dataService.js"></script>
 <script src="../scripts/set.js"></script>
 </body>
 </html>

@@ -12,6 +12,7 @@ p {
 
 }
 
+
 .red{
     color: #a94442;
 }
@@ -35,12 +36,12 @@ p {
 
 .table-hover > tbody > tr:hover > td,
 .table-hover > tbody > tr:hover > th {
-background-color: #e1e1ff;
+background-color: rgba(102, 175, 233, .3);
 }
 
 .ul-hover  > li:hover 
  {
-background-color: #e1e1ff;
+background-color: rgba(102, 175, 233, .3)
 }
 
 .shadow {
@@ -73,11 +74,6 @@ background-color: #e1e1ff;
 	background-color: #fbfbfb;
 }
 
-hr {
-	margin-top: 10px;
-	margin-bottom: 40px;
-    border-top:2px solid #eee;
-}
 
 h5 a {
 	padding:4px;
@@ -85,14 +81,14 @@ h5 a {
 
 h5 a:hover {
 	text-decoration: none;
-	background-color: #d7e4ed;
+	background-color: rgba(102, 175, 233, .3);
 }
 
 .btn {
 	margin: 0 3px;
 }
 
-.help-block {
+p.help-block {
   margin-top: none;
   margin-bottom: -5px;;
   font-size: 12px;;
@@ -103,6 +99,45 @@ h5 a:hover {
 	color: inherit;
 }
 
-div[ class="container-fluid"]  div[class="row"]{
-	margin: 100px;	
+ .navbar {
+    margin-bottom: 0;
+    background-color: #2e6da4;
+    z-index: 999;
+    border: 0;
+    font-size: 13px !important;
+    line-height: 1.42857143 !important;
+    letter-spacing: 2px;
+    border-radius: 0;
 }
+
+.navbar li a, .navbar .navbar-brand {
+    color: #fff !important;
+}
+
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #2e6da4 !important;
+    background-color: #fff !important;
+    border-top: 1px solid  #2e6da4;
+    border-right: 1px solid  #2e6da4;
+    border-bottom: 1px solid  #2e6da4;
+    
+}
+
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
+}
+
+ .vertical-center {
+  min-height: 100%;     /*  Fallback for browsers do NOT support vh unit */
+  min-height: 100vh;    /* These two lines are counted as one :-) */
+
+  display: flex;
+  align-items: center;
+}
+
+.jumbotron {
+  padding: 100px 25px; 
+  margin-bottom: 0px ;
+  background-color: #fff;
+} 

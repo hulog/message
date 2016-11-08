@@ -28,7 +28,7 @@ $(function () {
 	                    var contdata = data.data;
 	                    cont = contdata;
 	                    for(var i = 0; i < contdata.length; i++) {
-	                        d.innerHTML = d.innerHTML + "<tr><td><input class='select' name='sendid' type='checkbox' value=' "
+	                        d.innerHTML = d.innerHTML + "<tr id='" +  contdata[i].oid + " '><td><input class='select' name='sendid' type='checkbox' value=' "
 	                        + contdata[i].oid+" ' ></td><td>" +  contdata[i].oname+"</td><td>" + contdata[i].brand + "</td></tr>";
 	                    }
 	                }
@@ -83,7 +83,7 @@ $(function () {
 	                				table.push(contdata[i].oname);
 	                			}
 	                		}
-	                		tr="<tr id="+item+"><td><input class='select' name='groupid' type='checkbox' value='"
+	                		tr="<tr id=' "+item+" '><td><input class='select' name='groupid' type='checkbox' value='"
 	                        + item +"' ></td><td>"+gname+"</td><td>"+table+"</td></tr>";
 	                    	$("#list").append(tr);
 	                	});
@@ -120,11 +120,20 @@ $(function () {
     	console.log(sendto2);
   	   document.getElementById("showto").innerHTML= sendto2;
    })
+   
+ /*$("tbody").click(function(event) {
+        if (event.target.type !== 'checkbox') {
+            $(':checkbox', this).trigger('click');
+        }
+    });*/
 	 
-	 
-	 
-	 
-    
+/* $("tbody tr").click(function(){
+	 console.log("aaaaaaaaaa");
+	  var tr =  $(this).attr("id");
+	  console.log(tr);
+	  $("[type== 'checkbox' ] [value == tr]").attr("checked",true);
+   });*/
+   
             $("#logout").click(function () {
                 $.ajax
                 ({ 
@@ -142,7 +151,8 @@ $(function () {
                 })
                 })
              
-                $("#submit").click(function () {
+                $("#submit").click(function () { 
+               	 
                 var msgType =[];
                 $("input[name='msgType']:checked").each(function () {
                      msgType.push($(this).val());
@@ -160,8 +170,11 @@ $(function () {
                 console.log(groupid);
                 var context = $("#context").val();
                 if(checkedTest()&&selTest()&&toTest()&&checkInput()) {
-//                	alert("消息已提交，请稍等……");
-                    $("#submit").attr("disabled",true);
+                
+                	 $("#submit").attr("disabled",true);
+                	/*document.getElementById("context").innerHTML= "";*/
+                	 /*console.log(document.getElementById("context").innerHTML);
+                	 console.log( $("#context").val());*/
                $.ajax
                 ({ 
                     type: "POST",
@@ -172,13 +185,12 @@ $(function () {
                     success: function (data) {
                         if (data.code == "00000") {
                             alert("消息发送成功！");
-                            document.getElementById("myform").reset();
-                            $("#showto").empty();
-                            $("#submit").attr("disabled",false);
                         }
                         else {
                             alert(data.msg);
                         }
+                        $("#context").val("");
+                        $("#submit").attr("disabled",false);
                     }
                 })
                 }else{
@@ -187,14 +199,9 @@ $(function () {
             })
             
            function checkInput(){
-//                if($("input[id=msgType]").val() == null || $("input[id=msgType]").val() == ""){
-//                    alert("请选择发送通道");
-//                    $("input[id=msgType]").focus();
-//                    return false;
-//                }
-              /*  if($("#context").val() == null || $("#context").val() == ""){*/
+
 		  if($("#context").val().replace(/(^\s*)|(\s*$)/g, "").length ==0){
-                    alert("请填写发送内容");
+                    alert("请填写消息内容！");
                     $("#context").focus();
                     return false;
                 }
@@ -210,7 +217,7 @@ $(function () {
                         }
                     }
             if( count == 0 ){
-                alert("请选择发送通道");
+                alert("请选择发送通道！");
                 $("input[name=msgType]").focus();
                 return false;
             }
@@ -220,7 +227,7 @@ $(function () {
             function selTest(){
                 var slt=document.getElementById("sel");
                 if(slt.value=="0"){
-                alert("请选择发送方式");
+                alert("请选择发送方式！");
                 $("input[id=sel]").focus();
                 return false;
                 }
@@ -229,8 +236,8 @@ $(function () {
             
             function toTest(){
                 if(sendto2.length == 0){
-                alert("请选择发送对象");
-                $("button[id=sendto]").focus();
+                alert("请选择发送对象！");
+                $("input[id=sendto]").focus();
                 return false;
                 }
                 return true;

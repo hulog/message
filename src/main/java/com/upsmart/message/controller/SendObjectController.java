@@ -58,8 +58,9 @@ public class SendObjectController {
       BaseMessage msg = new BaseMessage();
       try {
           int cid = (Integer)session.getAttribute("cid");
-          if(null != this.sendObjectService.sendmsg(msgtypes, sendids, groupids, context, cid)) {
-              ResponseUtil.buildResMsg(msg, StatusCode.ERROR, this.sendObjectService.sendmsg(msgtypes, sendids, groupids, context, cid));
+          String result = this.sendObjectService.sendmsg(msgtypes, sendids, groupids, context, cid);
+          if(null != result) {
+              ResponseUtil.buildResMsg(msg, StatusCode.ERROR, result);
           } else {
               ResponseUtil.buildResMsg(msg, StatusCode.SUCCESS);
           }

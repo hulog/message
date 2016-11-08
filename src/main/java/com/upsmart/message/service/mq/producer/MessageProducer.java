@@ -46,7 +46,7 @@ public class MessageProducer {
             Map<String, Object> msg = new HashMap<>();
             msg.put("cid", cid);
             msg.put("type", type);
-            msg.put("sendid", type);
+            msg.put("sendid", sendid);
             msg.put("way", way);
             msg.put("content", content);
             if(!this.sendMessage(msg)) {
