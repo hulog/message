@@ -14,7 +14,7 @@ var getData = function(obj, callBack) {
 };
 
 var postData = function(obj, callBack) {
-    $.ajax({  
+    $.ajax({
         type:"POST",   //http请求方式
         url:obj.url, //发送给服务器的url
         data:obj, //发送给服务器的参数

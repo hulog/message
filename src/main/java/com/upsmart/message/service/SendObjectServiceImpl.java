@@ -112,9 +112,9 @@ public class SendObjectServiceImpl implements SendObjectService {
                 }
             }
             // 调用短信接口
-            if (msgtypes[i] == GlobalConstants.SHORTMSG) {
+            if (msgtypes[i] == GlobalConstants.SMS) {
                 try {
-                    List<SendObject> sos = querysos(sendids, groupids, GlobalConstants.SHORTMSG, context, cid);
+                    List<SendObject> sos = querysos(sendids, groupids, GlobalConstants.SMS, context, cid);
                     // 调用短信接口
                     if (!this.outerInfService.sendSms(context, sos)) {
                         result = "短信发送错误";

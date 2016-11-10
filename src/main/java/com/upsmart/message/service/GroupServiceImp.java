@@ -150,4 +150,16 @@ public class GroupServiceImp implements GroupService{
 			logger.error("mod group fail");
 		}
 	}
+	
+	public boolean check(String gname) {
+	    try {
+            if(null == this.groupRepository.findByGname(gname)) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+	}
 }

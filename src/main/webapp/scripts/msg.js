@@ -69,7 +69,7 @@ function showtable(returnresult){
     } else {
     $('#pagination-container').pagination({
         dataSource: returnresult,
-        pageSize: 10,
+        pageSize: 12,
         showGoInput: true,
         showGoButton: true,
         className: 'paginationjs-theme-blue',

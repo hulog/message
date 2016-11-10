@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="../styles/bootstrap/bootstrap.min.css" rel="stylesheet">
 <link href="../styles/msg.css" rel="stylesheet">
-<title>新增用户</title>
+<link href="../styles/pagination.css" rel="stylesheet">
+<title>管理用户</title>
 </head>
 <body>
 
@@ -28,69 +29,169 @@
             <li><a href="/msg/admin/setgroup">分配群组</a></li>
             <li><a href="/msg/admin/setinterface">配置接口</a></li>
              <li><a href="msg">查看消息</a></li>
-             <li  class="active"><a href="#">新增用户</a></li>
+             <li  class="active"><a href="#">管理用户</a></li>
              <li><a href="#"  id="logout" >退出</a></li>
          </ul>
     </div>
     </div>
 </nav>
-
+<!-- 主页面 -->
 <div class="jumbotron vertical-center">
 <div class="container">
 	<div class="raw">
-		<div class="col-md-7 col-centered">
-		 <div class="panel panel-default  shadow">
-		       <br>
-		       <br>
-		       <br>
-		       <br>
-				<form  class="form-horizontal"  novalidate>
-                  <div class="form-group">
-                    <label class=" col-md-4 control-label"><span class="red">* </span> 
-                        用户类型：</label>
-
-                    <div class="col-md-6">
-                        <label  class="radio-inline">
-                              <input type="radio" name="choose" value="client">普通用户</label>&nbsp;&nbsp;
-                        <label  class="radio-inline">  
-                            <input type="radio" name="choose" value="admin">管理员用户</label>
-                     </div>
-                  </div>     
-                   
-					  <div id="send" class="form-group">
-                            <label class=" col-md-4 control-label"><span class="red">* </span>用户名：
-                            </label>
-                            <div class="col-md-6">
-						   <input type="text" id="name" class="form-control" onblur="checkName(this.value)" >
-						   <p class="help-block red"  id="name-tip"></p>
-                            </div>
-                         </div>		
-                           <div class="form-group">
-                            <label class=" col-md-4 control-label"><span class="red">* </span>密码：
-                            </label>
-                            <div class="col-md-6">
-                               <input type="text" id="passwd" class="form-control" onblur="checkPasswd(this.value)" required >
-                               <p class="help-block red"  id="passwd-tip"></p>
-                            </div>
-                        </div>
-                        <br>
-                       <div class="form-group">
-                        <div class="col-md-3 col-md-offset-4">
-                        <input id="addconfirm"  class="btn btn-primary btn-block" type="button" value="保存" disabled >
-                        </div>
-                        </div>
-					</form>
-					<br>
-					<br>
-					<br>
-				</div>
-			</div>	
+		<div class="col-md-11 col-centered">
+			
+		<div class="raw">
+		<div class="col-md-3 col-md-offset-6 text-right">
+			<button id="addobject" class="btn btn-primary" data-toggle="modal" data-target="#addModal"  role="dialog" >新增</button>	
+			<button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" >删除</button>
+         </div>
+			<div class="col-md-3 pull-right">
+				<div class="input-group" style="width: 100%">
+					  <input type="text" id="searchword" class="form-control"  placeholder="不限"> 
+						   <span class="input-group-btn">						
+								 <button id="searchclt" class="btn btn-success">查询</button> 
+							</span>
+						</div>
+					</div>
 			</div>
+		   <br>
+		   <br>
+		   <br>
+		  <div class="panel panel-default  shadow">
+				<table class="table  table-hover text-center" >
+					<thead>
+						<tr id="head">
+							<th class="text-center col-md-1"><input type="checkbox" id="selectall"></th>
+							<th class="text-center">用户名</th>
+							<th class="text-center col-md-2">操作</th>
+						</tr>
+					</thead>
+					<tbody id="clttable">	
+					</tbody>
+				</table>
 		</div>
+		<div class="pull-right" id="pagination-container"></div>
 		</div>
+	</div>
+</div>
+</div>
+
+<!-- 新增用户 -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content ">
+			<div class="modal-header">
+				<h4 class="modal-title">新增用户</h4>
+			</div>
+			<form class="form-horizontal" role="form" novalidate>
+				<div class="modal-body">
+				
+					<div class="form-group">
+						<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>用户名： </label>
+						<div class="col-md-6">
+						   <input type="text" id="addname" class="form-control" onblur="checkName(this.value)" onkeyup="checkName(this.value)" required>
+						   <p class="help-block red" id="name-tip"></p>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>密码： </label>
+						<div class="col-md-6">
+						   <input type="password" id="addpasswd" class="form-control" onblur="checkPasswd(this.value)" onkeyup="checkPasswd(this.value)" placeholder="长度9到16位，只包含英文字母和数字" required>
+						   <p class="help-block red" id="passwd-tip"></p>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>确认密码： </label>
+						<div class="col-md-6">
+						   <input type="password" id="addrepasswd" class="form-control" onblur="checkRepasswd(this.value)" onkeyup="checkRepasswd(this.value)" required>
+						   <p class="help-block red" id="repasswd-tip"></p>
+						</div>
+					</div>
+               </div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button id="addconfirm" class="btn btn-primary" data-dismiss="modal" disabled>保存</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- 编辑用户 -->
+<div class="modal fade" id="modModal" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content ">
+			<div class="modal-header">
+				<h4 class="modal-title">编辑用户</h4>
+			</div>
+			<form class="form-horizontal" role="form" novalidate>
+				<div class="modal-body">
+					
+					<div class="form-group">
+						<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>用户名： </label>
+						<div class="col-md-6">
+						   <input type="text" id="modname" class="form-control" onblur="checkName2(this.value)" onkeyup="checkName2(this.value)" required>
+						   <p class="help-block red" id="name-tip2"></p>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>密码： </label>
+						<div class="col-md-6">
+						   <input type="password" id="modpasswd" class="form-control" onblur="checkPasswd(this.value)" onkeyup="checkPasswd(this.value)" placeholder="长度9到16位，只包含英文字母和数字" required>
+						   <p class="help-block red" id="passwd-tip2"></p>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>确认密码： </label>
+						<div class="col-md-6">
+						   <input type="password" id="modrepasswd" class="form-control" onblur="checkRepasswd(this.value)" onkeyup="checkRepasswd(this.value)" required>
+						   <p class="help-block red" id="repasswd-tip2"></p>
+						</div>
+					</div>
+					
+               </div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button id="modconfirm" class="btn btn-primary" data-dismiss="modal" disabled>保存</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- 删除用户 -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content ">
+         <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">
+               删除用户
+            </h4>
+         </div>
+         <div class="modal-body">
+               当前操作将删除对应的用户，请确认？
+         </div>
+         <div class="modal-footer">
+            
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+                取消
+            </button>
+            <button id="deleteclt"   type="button" class="btn btn-primary" data-dismiss="modal" >
+                确定
+            </button>
+          </div>
+      </div>
+</div>
+</div>
 
 <script src="../scripts/jquery.min.js"></script>
 <script src="../scripts/bootstrap.min.js"></script>
+<script src="../scripts/dataService.js"></script>
 <script src="../scripts/addcltadm.js"></script>
+<script src="../scripts/pagination.js"></script>
 </body>
 </html>

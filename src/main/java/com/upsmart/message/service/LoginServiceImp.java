@@ -32,8 +32,16 @@ public class LoginServiceImp implements LoginService {
     private AdminRepository adminRepository;
 
     public int check(String cname, String password) {
-        if (null != this.clientRepository.findByCnameAndCpassword(cname, Md5.MD5(password))) {
-            return this.clientRepository.findByCnameAndCpassword(cname, Md5.MD5(password)).getCid();
+        if (null != this.clientRepository.findByCnameAndCpassword(cname, Md5.MD5(Md5.MD5(password)))) {
+            return this.clientRepository.findByCnameAndCpassword(cname, Md5.MD5(Md5.MD5(password))).getCid();
+        } else {
+            return -1;
+        }
+    }
+
+    public int check(String cname) {
+        if (null != this.clientRepository.findByCname(cname)) {
+            return 1;
         } else {
             return -1;
         }
@@ -49,7 +57,7 @@ public class LoginServiceImp implements LoginService {
     }
 
     public ClientDto login(String cname, String cpassword) {
-        Client client = this.clientRepository.findByCnameAndCpassword(cname, Md5.MD5(cpassword));
+        Client client = this.clientRepository.findByCnameAndCpassword(cname,Md5.MD5(Md5.MD5(cpassword)));
         return this.clientConverter.toDto(client);
     }
 }

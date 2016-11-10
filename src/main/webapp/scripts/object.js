@@ -55,7 +55,7 @@ $(function(){
 
 	//点击行勾选
 	$("#objecttable").on("click", "tr td", function () {
-	    console.log($(this).parent());
+	    if (!$(this).find("button").length){
 	    var input = $(this).parent().find("input");
 	    //alert($(input).prop("checked"));
 	    if (!$(input).prop("checked")) {
@@ -63,11 +63,14 @@ $(function(){
 	    }else{
 	         $(input).prop("checked",false);
 	    }
+	    }
 	});
-/*	//多选框 防止事件冒泡
-	$("#objecttable").on("click", "input", function (event) {
-	    event.stopImmediatePropagation();
-	});*/
+	
+	//多选框防止事件冒泡
+    $("#objecttable").on("click", "input", function(event) {
+        event.stopImmediatePropagation();
+    });
+
 	$('#searchword').on('input',function(){
 	    if($("#searchword").val()== ""){
 	    	searchobject();
@@ -93,6 +96,15 @@ $(function(){
 	
 });
 
+$("#addobject").click(function() {
+    $("#addoname").val("");
+    $("#addbrand").val("");
+    $("#addwechat").val("");
+    $("#addemail").val("");
+    $("#addmessage").val("");
+});
+
+
 function showtable(returnresult){
     if(returnresult.length <= 0) {
         var nodata = "<tr><td colspan='7'>没有数据</td></tr>";
@@ -100,7 +112,7 @@ function showtable(returnresult){
     } else {
         $('#pagination-container').pagination({
             dataSource: returnresult,
-            pageSize: 10,
+            pageSize: 12,
             showGoInput: true,
             showGoButton: true,
             className: 'paginationjs-theme-blue',
@@ -188,6 +200,11 @@ function modclick(event){
 			$("#modwechat").val(returnresult[i].wechat);
 			$("#modemail").val(returnresult[i].email);
 			$("#modmessage").val(returnresult[i].message);
+			checkName(returnresult[i].oname);
+			checkBranch(returnresult[i].brand);
+			checkWchat(returnresult[i].wechat);
+			checkEmail(returnresult[i].email);
+			checkPhone(returnresult[i].message);
 		}
 	}
 }
@@ -262,8 +279,10 @@ function checkName(name){
     oname = false;
     if(name == "") {
         $("#name-tip").html("名字不能为空");
+        $("#name-tip2").html("名字不能为空");
     } else {
         $("#name-tip").html("");
+        $("#name-tip2").html("");
         oname = true;
     }
     button();
@@ -287,7 +306,7 @@ function checkEmail(name){
     if(name == "") {
         $("#email-tip").html("邮箱不能为空");
         $("#email-tip2").html("邮箱不能为空");
-    } else if(name.match(/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/)){
+    } else if(name.match(/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+\.([a-zA-Z0-9_-])+$/)){
         $("#email-tip").html("");
         $("#email-tip2").html("");
         email = true;
@@ -316,7 +335,7 @@ function checkPhone(name){
     if(name == "") {
         $("#phone-tip").html("手机不能为空");
         $("#phone-tip2").html("手机不能为空");
-    } else if(name.match(/0?(13|14|15|17|18)[0-9]{9}/)){
+    } else if(name.match(/^0?(13|14|15|17|18)[0-9]{9}$/)){
         $("#phone-tip").html("");
         $("#phone-tip2").html("");
         phone = true;

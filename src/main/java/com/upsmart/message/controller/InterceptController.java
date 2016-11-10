@@ -44,7 +44,7 @@ public class InterceptController {
         return "msg";
     }
 
-    @RequestMapping(value = "/admin/adduser")
+    @RequestMapping(value = "/admin/addcltadm")
     public String adduser() {
         return "addcltadm";
     }

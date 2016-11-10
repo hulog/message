@@ -164,4 +164,21 @@ public class GroupController{
 		}
 		return msg;
 	}
+	
+    //检测群组名是否存在
+    @RequestMapping(value = "/check", method = RequestMethod.POST)
+    @ResponseBody
+    public BaseMessage check(@RequestParam(value = "gname", required = true) String gname) {
+        BaseMessage message = new BaseMessage();
+        try {
+            if(this.groupService.check(gname)) {
+                ResponseUtil.buildResMsg(message, StatusCode.SUCCESS);
+            } else {
+                ResponseUtil.buildResMsg(message, StatusCode.ERROR);
+            }
+        } catch (Exception e) {
+            logger.error("系统出错");
+        }
+        return message;
+    }
 }

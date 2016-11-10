@@ -27,7 +27,7 @@
                <li><a href="/msg/admin/setgroup">分配群组</a></li>
                <li  class="active"><a href="#">配置接口</a></li>       
                <li><a href="msg">查看消息</a></li>
-               <li><a href="adduser">新增用户</a></li>                      
+               <li><a href="addcltadm">管理用户</a></li>
                <li><a href="#"  id="logout" >退出</a></li>
          </ul>
     </div>
@@ -59,31 +59,31 @@
 								<div class="form-group">
 									<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>接口URL： </label>
 									<div class="col-md-4">
-									   <input id="wurl" type="text" name="wurl"  class="form-control"  onblur="checkUrl(this.value)"   required>
+									   <input id="wurl" type="text" name="wurl"  class="form-control"  onblur="checkUrl(this.value)" onkeyup="checkUrl(this.value)"  required>
 									    <p class="help-block red"  id="url-tip"></p>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>CorpID： </label>
 									<div class="col-md-4">
-									   <input id="wname" type="text" name="wname"  class="form-control"  onblur="checkWname(this.value)"  required>
+									   <input id="wname" type="text" name="wname"  class="form-control"  onblur="checkWname(this.value)" onkeyup="checkWname(this.value)" required>
 									    <p class="help-block red"  id="wname-tip"></p>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>Secret： </label>
 									<div class="col-md-4">
-									  <input id="wpassword" type="text" name="wpassword" class="form-control"  onblur="checkWpasswd(this.value)"  required>
+									  <input id="wpassword" type="text" name="wpassword" class="form-control"  onblur="checkWpasswd(this.value)" onkeyup="checkWpasswd(this.value)" required>
 									   <p class="help-block red"  id="wpasswd-tip"></p>
 									</div>
 								</div>
 								<br>
+						</form>		
 								<div class="form-group">
 								  <div class="col-md-2 col-md-offset-4">
 								    <button id="setwchat" class="btn btn-primary btn-block" disabled>保存</button>
 								  </div>
 						    </div>
-						</form>		
 						</div>
 						
 						<div class="tab-pane" id="email">
@@ -91,45 +91,45 @@
 								<div class="form-group">
 									<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>邮箱帐号： </label>
 									<div class="col-md-4">
-									  <input id="ename" type="text" name="ename"  class="form-control" onblur="checkEname(this.value)" required>
+									  <input id="ename" type="text" name="ename"  class="form-control" onblur="checkEname(this.value)" onkeyup="checkEname(this.value)" required>
 									  <p class="help-block red"  id="ename-tip"></p>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>邮箱密码： </label>
 									<div class="col-md-4">
-									   <input id="epassword" type="text" name="epassword"  class="form-control" onblur="checkEpasswd(this.value)" required>
+									   <input id="epassword" type="text" name="epassword"  class="form-control" onblur="checkEpasswd(this.value)" onkeyup="checkEpasswd(this.value)" required>
 									   <p class="help-block red"  id="epasswd-tip"></p>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>邮件主题： </label>
 									<div class="col-md-4">
-									  <input id="title" type="text" name="title" class="form-control" onblur="checkTitle(this.value)" required>
+									  <input id="title" type="text" name="title" class="form-control" onblur="checkTitle(this.value)" onkeyup="checkTitle(this.value)" required>
 									  <p class="help-block red"  id="title-tip"></p>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>邮箱主机地址： </label>
 									<div class="col-md-4">
-									 <input id="host" type="text" name="host"  class="form-control" onblur="checkHost(this.value)" required>
+									 <input id="host" type="text" name="host"  class="form-control" onblur="checkHost(this.value)" onkeyup="checkHost(this.value)" required>
 									 <p class="help-block red"  id="host-tip"></p>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>邮箱接口号： </label>
 									<div class="col-md-4">
-									  <input id="port" type="text" name="port"  class="form-control" onblur="checkPort(this.value)" required>
+									  <input id="port" type="text" name="port"  class="form-control" onblur="checkPort(this.value)" onkeyup="checkPort(this.value)" required>
 									  <p class="help-block red"  id="port-tip"></p>
 									</div>
 								</div>
 								<br>
-								<div class="form-group">
+						</form>		
+								<div>
 								  <div class="col-md-2 col-md-offset-4">
 								    <button id="setemail" class="btn btn-primary btn-block" disabled>保存</button>
 								  </div>
 						    </div>
-						</form>		
 						</div>
 
 						<div class="tab-pane" id="sms">

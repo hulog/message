@@ -26,4 +26,6 @@ public interface ClientRepository extends PagingAndSortingRepository<Client, Int
 	
     // 按账号和密码查找
     public Client findByCnameAndCpassword(String cname,String cpassword);
+    
+    public Client findByCname(String cname);
 }

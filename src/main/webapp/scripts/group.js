@@ -4,6 +4,7 @@ var selectedobj=0;
 var addtr="";
 var modtr="";
     var gname;
+    var rename;
 
 $(function(){
 	$.ajax({  
@@ -21,23 +22,35 @@ $(function(){
 		$('.group').not(this).prop('checked',this.checked);
 	});
 	
+	$("#addselectall").click(function(){
+        $('.addobj').not(this).prop('checked',this.checked);
+    });
+	
+	$("#modselectall").click(function(){
+        $('.modobj').not(this).prop('checked',this.checked);
+    });
+	
 	$("#searchgroup").click(function(){
 		searchgroup(returnresult);
 	});
 	   //点击行勾选
-    $("#grouptable").on("click", "tr", function () {
-        var input = $(this).find("input");
+    $("#grouptable").on("click", "tr td", function () {
+        if (!$(this).find("button").length){
+            var input = $(this).parent().find("input");
         //alert($(input).prop("checked"));
         if (!$(input).prop("checked")) {
             $(input).prop("checked",true);
         }else{
              $(input).prop("checked",false);
         }
+        }
     });
-    //多选框 防止事件冒泡
-    $("#grouptable").on("click", "input", function (event) {
+    
+  //多选框防止事件冒泡
+    $("#grouptable").on("click", "input", function(event) {
         event.stopImmediatePropagation();
     });
+
     //点击行勾选
     $("#addobjlist").on("click", "tr", function () {
         var input = $(this).find("input");
@@ -48,10 +61,11 @@ $(function(){
              $(input).prop("checked",false);
         }
     });
-    //多选框 防止事件冒泡
-    $("#addobjlist").on("click", "input", function (event) {
+  //多选框防止事件冒泡
+    $("#addobjlist").on("click", "input", function(event) {
         event.stopImmediatePropagation();
     });
+
     //点击行勾选
     $("#modobjlist").on("click", "tr", function () {
         var input = $(this).find("input");
@@ -62,10 +76,12 @@ $(function(){
              $(input).prop("checked",false);
         }
     });
-    //多选框 防止事件冒泡
-    $("#modobjlist").on("click", "input", function (event) {
+    
+  //多选框防止事件冒泡
+    $("#modobjlist").on("click", "input", function(event) {
         event.stopImmediatePropagation();
     });
+  
 	 $("body").keydown(function(event) {
          if (event.keyCode == "13") {//keyCode=13是回车键
              $("#searchgroup").click();
@@ -116,6 +132,11 @@ $(function(){
         })
 });
 
+$("#addgroup").click(function () {
+    $("#addgname").val("");
+});
+
+
 function showtable(object){
 	var obj=object.resultobjgrp;
 	var grpset = new Set();
@@ -155,7 +176,7 @@ function showtable(object){
     }
 	$('#pagination-container').pagination({
         dataSource: padata,
-        pageSize: 10,
+        pageSize: 12,
         showGoInput: true,
         showGoButton: true,
         className: 'paginationjs-theme-blue',
@@ -174,10 +195,10 @@ function showtable(object){
 	
 	obj=object.resultobj;
 	for(var i=0; i<obj.length; i++){
-		addtr="<tr><th><input type='checkbox' class=\"addobj\" id=\""+obj[i].oname+"\" name="+obj[i].oid+
-		"></th><th>"+obj[i].oname+"</th><th>"+obj[i].brand+"</th></tr>";
-		modtr="<tr><th><input type='checkbox' class=\"modobj\" id=\""+obj[i].oname+"\" name="+obj[i].oid+
-        "></th><th>"+obj[i].oname+"</th><th>"+obj[i].brand+"</th></tr>";
+		addtr="<tr><td><input type='checkbox' class=\"addobj\" id=\""+obj[i].oname+"\" name="+obj[i].oid+
+		"></td><td>"+obj[i].oname+"</td><td>"+obj[i].brand+"</td></tr>";
+		modtr="<tr><td><input type='checkbox' class=\"modobj\" id=\""+obj[i].oname+"\" name="+obj[i].oid+
+        "></td><td>"+obj[i].oname+"</td><td>"+obj[i].brand+"</td></tr>";
 		$("#addobjlist").append(addtr);
 		$("#modobjlist").append(modtr);
 	}
@@ -222,6 +243,7 @@ function addgroup(){
         	alert("新增成功");
 		$("#addgname").val("");
         	$("input[class='addobj']").prop("checked",false);
+        	$("#addselectall").prop("checked",false);
         	$.ajax({  
                 type:"GET",   //http请求方式
                 url:"../group/find", //发送给服务器的url
@@ -244,6 +266,8 @@ function modclick(event){
 	for(var i=0;i<group.length;i++){
 		if(group[i].item==selectedobj){
 			$("#modgname").val(group[i].gname);
+			rename = group[i].gname;
+			checkGname2(group[i].gname);
 			$("input[class='modobj']").each(function(){
 			    if($.inArray($(this).attr("id"),group[i].table)==-1){
 			        $(this).removeAttr("checked");
@@ -269,6 +293,7 @@ function modgroup(selectedobj){
         dataType:"json",
         success:function(data) {
         	alert("更改成功");
+        	$("#modselectall").prop("checked",false);
         	$.ajax({  
                 type:"GET",   //http请求方式
                 url:"../group/find", //发送给服务器的url
@@ -321,15 +346,46 @@ function deletegroup(){
 }
 
 //检查群组名
-function checkGname(name) {
+function checkGname(bar) {
     gname = false;
-    if(name == "") {
+    if(bar == "") {
         $("#gname-tip").html("群组名不能为空");
+    } else {
+        var params = {
+                url : "../group/check",
+                gname : bar
+            }
+                postData(params, function(data) {
+                    if (data.code == "00000") {
+                        $("#gname-tip").html("");
+                    } else {
+                        $("#gname-tip").html("群组名已存在");
+                        name = true;
+                    }
+                });
+    }
+    checkButton();
+}
+
+function checkGname2(bar) {
+    gname = false;
+    if (bar == "") {
         $("#gname-tip2").html("群组名不能为空");
     } else {
-        $("#gname-tip").html("");
-        $("#gname-tip2").html("");
-        gname = true;
+        if (bar != rename) {
+            var params = {
+                    url : "../group/check",
+                    gname : bar
+            }
+            postData(params, function(data) {
+                if (data.code == "00000") {
+                    $("#gname-tip2").html("");
+                } else {
+                    $("#gname-tip2").html("群组名已存在");
+                    gname = true;
+                }
+            });
+        }
     }
     checkButton();
 }

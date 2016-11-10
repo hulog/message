@@ -42,9 +42,6 @@ $(function() {
             });
         });
         
-        var bar;
-        bar = $("#setwchat");
-        console.log(bar);
         
         $("#weixin").click(function(){
             wxfoo();
@@ -63,11 +60,11 @@ $(function() {
         	console.log(bar);
         });
         
-   	 $("body").keydown(function(event) {
+   	 /*$("body").keydown(function(event) {
          if (event.keyCode == "13") {// keyCode=13是回车键
         	bar.click();
          }
-     });
+     });*/
         
         $("#logout").click(function () {
             $.ajax
@@ -94,6 +91,9 @@ $(function() {
                 $("#wurl").val(resp.data.infurl);
                 $("#wname").val(resp.data.infname);
                 $("#wpassword").val(resp.data.infpassword);
+                checkUrl(resp.data.infurl);
+                checkWname(resp.data.infname);
+                checkWpasswd(resp.data.infpassword);
             });
         };
         var emailfoo = function(){
@@ -107,14 +107,19 @@ $(function() {
                 $("#title").val(resp.data.title);
                 $("#host").val(resp.data.host);
                 $("#port").val(resp.data.port);
+                checkEname(resp.data.infname);
+                checkEpasswd(resp.data.infpassword);
+                checkTitle(resp.data.title);
+                checkHost(resp.data.host);
+                checkPort(resp.data.port);
             });
         };
         wxfoo();
  });  
       
- function checkUrl(bar){
+ function checkUrl(name){
      url = false;
-     if(bar == "") {
+     if(name == "") {
          $("#url-tip").html("URL不能为空");
      } else{
          $("#url-tip").html("");
@@ -123,9 +128,9 @@ $(function() {
      checkWchatButton();
  }
 
- function checkWname(bar){
+ function checkWname(name){
      wname = false;
-     if(bar == "") {
+     if(name == "") {
          $("#wname-tip").html("帐号不能为空");
      } else{
          $("#wname-tip").html("");
@@ -134,31 +139,33 @@ $(function() {
      checkWchatButton();
  }
 
- function checkWpasswd(bar){
+ function checkWpasswd(name){
      wpasswd = false;
-     if(bar == "") {
+     if(name == "") {
          $("#wpasswd-tip").html("密码不能为空");
      } else{
          $("#wpasswd-tip").html("");
         wpasswd = true;
     }
-     checkWchatButton();
+  checkWchatButton();
  }
 
- function checkEname(bar){
+ function checkEname(name){
      ename = false;
-     if(bar == "") {
+     if(name == "") {
          $("#ename-tip").html("帐号不能为空");
-     } else{
+     } else if(name.match(/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/)){
          $("#ename-tip").html("");
          ename = true;
-    }
+    }else{
+         $("#ename-tip").html("帐号不符合规范");
+     }
      checkEmailButton();
  }
 
- function checkEpasswd(bar){
+ function checkEpasswd(name){
      epasswd = false;
-     if(bar == "") {
+     if(name == "") {
          $("#epasswd-tip").html("密码不能为空");
      } else{
          $("#epasswd-tip").html("");
@@ -167,9 +174,9 @@ $(function() {
      checkEmailButton();
  }
 
- function checkTitle(bar){
+ function checkTitle(name){
      title = false;
-     if(bar == "") {
+     if(name == "") {
          $("#title-tip").html("主题不能为空");
      } else{
          $("#title-tip").html("");
@@ -178,30 +185,37 @@ $(function() {
      checkEmailButton();
  }
 
- function checkHost(bar){
+ function checkHost(name){
      host = false;
-     if(bar == "") {
+     if(name == "") {
          $("#host-tip").html("主机地址不能为空");
-     } else{
+     } else if(!name.match(/[\u4e00-\u9fa5]+/)){
          $("#host-tip").html("");
          host = true;
+    }else{
+        $("#host-tip").html("主机地址不符合规范");
     }
      checkEmailButton();
  }
 
- function checkPort(bar){
+ function checkPort(name){
+     console.log(name);
      port = false;
-     if(bar == "") {
+     if(name == "") {
          $("#port-tip").html("接口号不能为空");
-     } else{
+     } else if(name > (-1) && name< 65536){
          $("#port-tip").html("");
          port = true;
+    }else{
+         $("#port-tip").html("接口号不符合规范");
     }
      checkEmailButton();
  }
  
+ 
  function checkWchatButton() {
      var stamp = document.getElementById("setwchat");
+     stamp.disabled = true;
      if(url && wname && wpasswd) {
          stamp.disabled = false;
      }
@@ -209,6 +223,7 @@ $(function() {
  
  function checkEmailButton() {
      var stamp = document.getElementById("setemail");
+     stamp.disabled = true;
      if(ename && epasswd && title && host && port) {
          stamp.disabled = false;
      }

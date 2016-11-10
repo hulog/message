@@ -31,4 +31,6 @@ public interface GroupService {
 	public void deleteGroup(int gid);
 	
 	public void modGroup(int gid , String gname , List<Integer> oid);
+	
+	public boolean check(String gname);
 }

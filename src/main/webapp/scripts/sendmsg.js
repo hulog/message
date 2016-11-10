@@ -121,18 +121,16 @@ $(function () {
   	   document.getElementById("showto").innerHTML= sendto2;
    })
    
- /*$("tbody").click(function(event) {
-        if (event.target.type !== 'checkbox') {
-            $(':checkbox', this).trigger('click');
+     //点击行勾选
+    $("#list").on("click", "tr", function () {
+        var input = $(this).find("input");
+        //alert($(input).prop("checked"));
+        if (!$(input).prop("checked")) {
+            $(input).prop("checked",true);
+        }else{
+             $(input).prop("checked",false);
         }
-    });*/
-	 
-/* $("tbody tr").click(function(){
-	 console.log("aaaaaaaaaa");
-	  var tr =  $(this).attr("id");
-	  console.log(tr);
-	  $("[type== 'checkbox' ] [value == tr]").attr("checked",true);
-   });*/
+    });
    
             $("#logout").click(function () {
                 $.ajax

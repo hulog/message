@@ -28,7 +28,7 @@
               <li><a href="/msg/admin/setgroup">分配群组</a></li>
               <li><a href="/msg/admin/setinterface">配置接口</a></li>
               <li><a href="msg">查看消息</a></li>
-              <li><a href="adduser">新增用户</a></li>
+              <li><a href="addcltadm">管理用户</a></li>
               <li><a href="#"  id="logout" >退出</a></li>
          </ul>
     </div>
@@ -94,35 +94,35 @@
 					<div class="form-group">
 						<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>对象名称： </label>
 						<div class="col-md-6">
-						   <input type="text" id="addoname" class="form-control" onblur="checkName(this.value)" required>
+						   <input type="text" id="addoname" class="form-control" onblur="checkName(this.value)" onkeyup="checkName(this.value)" required>
 						   <p class="help-block red" id="name-tip"></p>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>所属部门： </label>
 						<div class="col-md-6">
-						   <input type="text" id="addbrand" class="form-control" onblur="checkBranch(this.value)" required>
+						   <input type="text" id="addbrand" class="form-control" onblur="checkBranch(this.value)" onkeyup="checkBranch(this.value)" required>
 						   <p class="help-block red" id="branch-tip"></p>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>微信帐号： </label>
 						<div class="col-md-6">
-						   <input type="text" id="addwechat" class="form-control" onblur="checkWchat(this.value)" required>
+						   <input type="text" id="addwechat" class="form-control" onblur="checkWchat(this.value)" onkeyup="checkWchat(this.value)" required>
 						   <p class="help-block red" id="wchat-tip"></p>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>邮箱帐号： </label>
 						<div class="col-md-6">
-						   <input type="text" id="addemail" class="form-control" onblur="checkEmail(this.value)" required>
+						   <input type="text" id="addemail" class="form-control" onblur="checkEmail(this.value)" onkeyup="checkEmail(this.value)" required>
 						   <p class="help-block red" id="email-tip"></p>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>手机号码： </label>
 						<div class="col-md-6">
-						   <input type="text" id="addmessage" class="form-control" onblur="checkPhone(this.value)" required>
+						   <input type="text" id="addmessage" class="form-control" onblur="checkPhone(this.value)" onkeyup="checkPhone(this.value)" required>
 						   <p class="help-block red"  id="phone-tip"></p>
 						</div>
 					</div>
@@ -149,35 +149,35 @@
 					<div class="form-group">
 						<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>对象名称： </label>
 						<div class="col-md-6">
-						   <input type="text" id="modoname" class="form-control" onblur="checkName(this.value)" required>
+						   <input type="text" id="modoname" class="form-control" onblur="checkName(this.value)" onkeyup="checkName(this.value)" required>
 						   <p class="help-block red" id="name-tip2"></p>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>所属部门： </label>
 						<div class="col-md-6">
-						   <input type="text" id="modbrand" class="form-control" onblur="checkBranch(this.value)" required>
+						   <input type="text" id="modbrand" class="form-control" onblur="checkBranch(this.value)" onkeyup="checkBranch(this.value)" required>
 						   <p class="help-block red" id="branch-tip2"></p>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>微信帐号： </label>
 						<div class="col-md-6">
-						   <input type="text" id="modwechat" class="form-control" onblur="checkWchat(this.value)" required>
+						   <input type="text" id="modwechat" class="form-control" onblur="checkWchat(this.value)" onkeyup="checkWchat(this.value)" required>
 						   <p class="help-block red" id="wchat-tip2"></p>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>邮箱帐号： </label>
 						<div class="col-md-6">
-						   <input type="text" id="modemail" class="form-control" onblur="checkEmail(this.value)" required>
+						   <input type="text" id="modemail" class="form-control" onblur="checkEmail(this.value)" onkeyup="checkEmail(this.value)" required>
 						   <p class="help-block red" id="email-tip2"></p>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class=" col-md-4 control-label"> <span class="red">*&nbsp;</span>手机号码： </label>
 						<div class="col-md-6">
-						   <input type="text" id="modmessage" class="form-control" onblur="checkPhone(this.value)" required>
+						   <input type="text" id="modmessage" class="form-control" onblur="checkPhone(this.value)" onkeyup="checkPhone(this.value)" required>
 						   <p class="help-block red"  id="phone-tip2"></p>
 						</div>
 					</div>

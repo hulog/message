@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.method.annotation.SessionAttributesHandler;
 
 import com.upsmart.message.constant.GlobalConstants;
 import com.upsmart.message.domain.Admin;
@@ -71,6 +70,7 @@ public class LoginController {
 
     @Autowired
     private LoginServiceImp loginServiceImpl;
+
     // 登录
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
@@ -110,5 +110,23 @@ public class LoginController {
             logger.error("登出异常");
         }
         return msg;
+    }
+    
+    //检测用户名是否存在
+    @RequestMapping(value = "/check", method = RequestMethod.POST)
+    @ResponseBody
+    public BaseMessage check(@RequestParam(value = "name", required = true) String name) {
+        BaseMessage message = new BaseMessage();
+        try {
+            int result = this.loginService.check(name);
+            if(result > 0) {
+                ResponseUtil.buildResMsg(message, StatusCode.SUCCESS);
+            } else {
+                ResponseUtil.buildResMsg(message, StatusCode.ERROR);
+            }
+        } catch (Exception e) {
+            logger.error("系统出错");
+        }
+        return message;
     }
 }
