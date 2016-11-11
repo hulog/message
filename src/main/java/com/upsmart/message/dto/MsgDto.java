@@ -12,15 +12,15 @@ import java.util.Date;
  */
 public class MsgDto {
     private int mid;
-    
+
     private int oid;
-    
+
     private int cid;
-    
+
     private int sendway;
-    
+
     private String mcontent;
-    
+
     private Date sendtime;
 
     public int getMid() {

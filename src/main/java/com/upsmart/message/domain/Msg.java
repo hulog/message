@@ -24,23 +24,23 @@ public class Msg {
     @Column(name = "mid", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int mid;
-    
-    //发送对象编号
+
+    // 发送对象编号
     @Column(name = "oid", nullable = false)
     private int oid;
-    
-    //使用客户编号
+
+    // 使用客户编号
     @Column(name = "cid", nullable = false)
     private int cid;
-    
-    //消息发送方式
-    @Column(name = "sendway" , nullable = false)
+
+    // 消息发送方式
+    @Column(name = "sendway", nullable = false)
     private int sendway;
-    
-    //消息发送内容
+
+    // 消息发送内容
     @Column(name = "mcontent", nullable = false)
     private String mcontent;
-    
+
     @Column(name = "sendtime", nullable = false)
     private Date sendtime;
 

@@ -14,7 +14,7 @@ import com.upsmart.message.dto.ClientGroupDto;
 public class ClientGroupConverter {
     public ClientGroupDto toDto(ObjectGroup clientGroup) {
         ClientGroupDto clientGroupDto = new ClientGroupDto();
-        if(null != clientGroup) {
+        if (null != clientGroup) {
             clientGroupDto.setGid(clientGroup.getGid());
             clientGroupDto.setId(clientGroup.getId());
             clientGroupDto.setOid(clientGroup.getOid());

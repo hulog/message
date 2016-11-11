@@ -12,11 +12,11 @@ import java.util.Date;
  */
 public class ClientDto {
     private int cid;
-    
+
     private String cname;
-    
+
     private Date createtime;
-    
+
     private Date modtime;
 
     public int getCid() {
@@ -50,5 +50,5 @@ public class ClientDto {
     public void setModtime(Date modtime) {
         this.modtime = modtime;
     }
-    
+
 }

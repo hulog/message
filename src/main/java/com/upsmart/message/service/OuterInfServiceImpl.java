@@ -44,7 +44,7 @@ public class OuterInfServiceImpl implements OuterInfService {
     public boolean sendWx(String content, List<SendObject> userlist) {
         // TODO Auto-generated method stub
         if (null != userlist && userlist.size() != 0) {
-        	logger.info("微信发送成功");
+            logger.info("微信发送成功");
             return this.weixinService.sendMsgToUsers(userlist, content);
         } else {
             logger.error("发送对象为空,微信发送失败！");
@@ -58,7 +58,7 @@ public class OuterInfServiceImpl implements OuterInfService {
         for (SendObject s : emaillist) {
             to.add(s.getEmail());
         }
-        //TODO 连接邮箱用“,”
+        // TODO 连接邮箱用“,”
         MailDto dto = this.mailConverter.mailDtoWapper(content, to);
         MailMessage ms = this.mailServiceImpl.sendMail(dto);
         if (ms.getCode() == MailMessage.MESSAGE_SEND_SUCCESS) {

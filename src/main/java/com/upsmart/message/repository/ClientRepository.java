@@ -14,18 +14,18 @@ import com.upsmart.message.domain.Client;
  * @author aidar
  * @version 0.0.1
  * @desc controller
- * @date 2016年10月17日 
+ * @date 2016年10月17日
  */
 @Repository
-public interface ClientRepository extends PagingAndSortingRepository<Client, Integer>{
+public interface ClientRepository extends PagingAndSortingRepository<Client, Integer> {
 
-	public List<Client> findAll();
+    public List<Client> findAll();
 
-	@Query(value = "select * from client c where c.cid=?1", nativeQuery=true)
-	public Client findByCid(int cid);
-	
+    @Query(value = "select * from client c where c.cid=?1", nativeQuery = true)
+    public Client findByCid(int cid);
+
     // 按账号和密码查找
-    public Client findByCnameAndCpassword(String cname,String cpassword);
-    
+    public Client findByCnameAndCpassword(String cname, String cpassword);
+
     public Client findByCname(String cname);
 }

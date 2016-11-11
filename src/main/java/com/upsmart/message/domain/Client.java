@@ -24,18 +24,18 @@ public class Client {
     @Column(name = "cid", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int cid;
-    
-    //客户名
+
+    // 客户名
     @Column(name = "cname", length = 30, nullable = false)
     private String cname;
-    
-    //客户密码
+
+    // 客户密码
     @Column(name = "cpassword", length = 32, nullable = false)
     private String cpassword;
-    
+
     @Column(name = "createtime", nullable = false)
     private Date createtime;
-    
+
     @Column(name = "modtime", nullable = false)
     private Date modtime;
 

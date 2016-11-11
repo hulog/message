@@ -23,51 +23,51 @@ import com.upsmart.message.util.ResponseUtil;
  * @author aidar
  * @version 0.0.1
  * @desc controller
- * @date 2016年10月17日 
+ * @date 2016年10月17日
  */
 @Controller
 @RequestMapping("/object")
 public class SendObjectController {
     private static Logger logger = LoggerFactory.getLogger(SendObjectController.class);
-  @Autowired
-  private SendObjectService sendObjectService;
+    @Autowired
+    private SendObjectService sendObjectService;
 
-  //查询所有的用户
-  @RequestMapping(value = "query", method = RequestMethod.GET)
-  @ResponseBody
-  public BaseMessage query() {
-      BaseMessage msg = new BaseMessage();
-      try {
-          ResponseUtil.buildResMsg(msg, StatusCode.SUCCESS);
-          msg.setData(this.sendObjectService.queryObjects());
-      } catch (Exception e) {
-          logger.error("查询所有发送对象信息异常");
-          ResponseUtil.buildResMsg(msg, StatusCode.SYSTEM_ERROR);
-          e.printStackTrace();
-      }
-      return msg;
-  }
-  
-  @RequestMapping(value = "sendmsg", method = RequestMethod.POST)
-  @ResponseBody
-  public BaseMessage sendmsg(HttpServletRequest request, HttpSession session,
-          @RequestParam(value = "msgType", required = false) Integer[] msgtypes,
-          @RequestParam(value = "sendid", required = false) Integer[] sendids,
-          @RequestParam(value = "groupid", required = false) Integer[] groupids,
-          @RequestParam(value = "context", required = false) String context) {
-      BaseMessage msg = new BaseMessage();
-      try {
-          int cid = (Integer)session.getAttribute("cid");
-          String result = this.sendObjectService.sendmsg(msgtypes, sendids, groupids, context, cid);
-          if(null != result) {
-              ResponseUtil.buildResMsg(msg, StatusCode.ERROR, result);
-          } else {
-              ResponseUtil.buildResMsg(msg, StatusCode.SUCCESS);
-          }
-      } catch (Exception e) {
-          logger.error("调用接口发送异常");
-          ResponseUtil.buildResMsg(msg, StatusCode.SYSTEM_ERROR);
-      }
-      return msg;
-  }
+    // 查询所有的用户
+    @RequestMapping(value = "query", method = RequestMethod.GET)
+    @ResponseBody
+    public BaseMessage query() {
+        BaseMessage msg = new BaseMessage();
+        try {
+            ResponseUtil.buildResMsg(msg, StatusCode.SUCCESS);
+            msg.setData(this.sendObjectService.queryObjects());
+        } catch (Exception e) {
+            logger.error("查询所有发送对象信息异常");
+            ResponseUtil.buildResMsg(msg, StatusCode.SYSTEM_ERROR);
+            e.printStackTrace();
+        }
+        return msg;
+    }
+
+    @RequestMapping(value = "sendmsg", method = RequestMethod.POST)
+    @ResponseBody
+    public BaseMessage sendmsg(HttpServletRequest request, HttpSession session,
+            @RequestParam(value = "msgType", required = false) Integer[] msgtypes,
+            @RequestParam(value = "sendid", required = false) Integer[] sendids,
+            @RequestParam(value = "groupid", required = false) Integer[] groupids,
+            @RequestParam(value = "context", required = false) String context) {
+        BaseMessage msg = new BaseMessage();
+        try {
+            int cid = (Integer) session.getAttribute("cid");
+            String result = this.sendObjectService.sendmsg(msgtypes, sendids, groupids, context, cid);
+            if (null != result) {
+                ResponseUtil.buildResMsg(msg, StatusCode.ERROR, result);
+            } else {
+                ResponseUtil.buildResMsg(msg, StatusCode.SUCCESS);
+            }
+        } catch (Exception e) {
+            logger.error("调用接口发送异常");
+            ResponseUtil.buildResMsg(msg, StatusCode.SYSTEM_ERROR);
+        }
+        return msg;
+    }
 }

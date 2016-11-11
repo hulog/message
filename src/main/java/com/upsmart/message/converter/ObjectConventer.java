@@ -14,7 +14,7 @@ import com.upsmart.message.dto.ObjectDto;
 public class ObjectConventer {
     public ObjectDto toDto(SendObject object) {
         ObjectDto objectDto = new ObjectDto();
-        if(null != object) {
+        if (null != object) {
             objectDto.setBrand(object.getBrand());
             objectDto.setCreatetime(object.getCreatetime());
             objectDto.setEmail(object.getEmail());

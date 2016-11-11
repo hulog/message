@@ -24,7 +24,7 @@ public class BaseMessage extends Message<Object> {
         this.Msg = statusCode.getMsg();
     }
 
-    public BaseMessage( StatusCode statusCode, String appendMessage) {
+    public BaseMessage(StatusCode statusCode, String appendMessage) {
         this(statusCode);
         this.Code = statusCode.getCode();
         if (null != appendMessage) {

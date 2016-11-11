@@ -14,7 +14,7 @@ import com.upsmart.message.dto.AdminDto;
 public class AdminConverter {
     public AdminDto toDto(Admin admin) {
         AdminDto adminDto = new AdminDto();
-        if(null != admin) {
+        if (null != admin) {
             adminDto.setAid(admin.getAid());
             adminDto.setAname(admin.getAname());
             adminDto.setApassword(admin.getApassword());

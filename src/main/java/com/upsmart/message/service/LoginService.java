@@ -15,8 +15,10 @@ import com.upsmart.message.domain.Admin;
 @Service
 public interface LoginService {
     public int check(String cname, String password);
+
     public int check(String cname);
-    
+
     public Admin checkadmin(String name, String password);
+
     public Object login(String cname, String password);
 }

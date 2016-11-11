@@ -22,10 +22,10 @@ public class ObjectGroup {
     @Column(name = "id", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
+
     @Column(name = "gid", nullable = false)
     private int gid;
-    
+
     @Column(name = "oid", nullable = false)
     private int oid;
 

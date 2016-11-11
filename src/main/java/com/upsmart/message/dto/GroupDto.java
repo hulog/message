@@ -12,11 +12,11 @@ import java.util.Date;
  */
 public class GroupDto {
     private int gid;
-    
+
     private String gname;
-    
+
     private Date createtime;
-    
+
     private Date modtime;
 
     public int getGid() {

@@ -11,16 +11,11 @@ package com.upsmart.message.msg;
 public enum StatusCode {
 
     // success
-    SUCCESS("00000", "提交成功"),
-    NO_RESPONSE("00001", "没有查询到结果"),
+    SUCCESS("00000", "提交成功"), NO_RESPONSE("00001", "没有查询到结果"),
     // fail
-    ACCOUNT_PWD_INVALID_NOT_EXISTS("10110", "账号名密码不匹配"),
-    ACCOUNT_INVALID_NOT_EXISTS("10104", "账号不存在"),
-    VERIFICATION_CODE_ERROR("00002","验证码出错"),
-    PWD_CONFIRM("00003","密码输入不一致"),
-    ERROR("00004", "操作出错,"),
-    SYSTEM_ERROR("20101", "系统异常"),
-    ERROR_INPUT("00005","INPUT ERROR");
+    ACCOUNT_PWD_INVALID_NOT_EXISTS("10110", "账号名密码不匹配"), ACCOUNT_INVALID_NOT_EXISTS("10104",
+            "账号不存在"), VERIFICATION_CODE_ERROR("00002", "验证码出错"), PWD_CONFIRM("00003", "密码输入不一致"), ERROR("00004",
+                    "操作出错,"), SYSTEM_ERROR("20101", "系统异常"), ERROR_INPUT("00005", "INPUT ERROR");
 
     private String code;
     private String msg;
@@ -37,5 +32,5 @@ public enum StatusCode {
     public String getMsg() {
         return msg;
     }
-    
+
 }

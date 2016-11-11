@@ -67,12 +67,13 @@ public class ResponseUtil {
      * @param map
      * @param key
      * @param defaultValue
-     * @return 
+     * @return
      * @desc never used
      */
-//    private static String getValue(Map<String, String> map, String key, String defaultValue) {
-//        String value = map.get(key);
-//        return isBlank(value) ? defaultValue : value;
-//    }
+    // private static String getValue(Map<String, String> map, String key,
+    // String defaultValue) {
+    // String value = map.get(key);
+    // return isBlank(value) ? defaultValue : value;
+    // }
 
 }

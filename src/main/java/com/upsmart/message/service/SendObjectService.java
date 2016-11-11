@@ -11,10 +11,11 @@ import org.springframework.stereotype.Service;
  * @author aidar
  * @version 0.0.1
  * @desc controller
- * @date 2016年10月17日 
+ * @date 2016年10月17日
  */
 @Service
 public interface SendObjectService {
     public List<Map<String, Object>> queryObjects();
-    public String sendmsg(Integer[] msgtypes, Integer[] sendids,Integer[] groupids,String context, int cid);
+
+    public String sendmsg(Integer[] msgtypes, Integer[] sendids, Integer[] groupids, String context, int cid);
 }

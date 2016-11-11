@@ -25,75 +25,73 @@ import com.upsmart.message.repository.SendObjectRepository;
 
 @Service
 public class SetSendObjectServiceImp implements SetSendObjectService {
-	
-	private static Logger logger = LoggerFactory.getLogger(SetSendObjectServiceImp.class);
 
-	@Autowired
-	private SendObjectRepository sendObjectRepository;
-	
-	@Autowired 
-	private ObjectGroupRepository objectGroupRepository;
-	
-	public List<SendObject> findAllObject(){
-		List<SendObject> sendObject = new ArrayList<SendObject>();
-		try{
-			sendObject = this.sendObjectRepository.findAll();
-		}catch(Exception e){
-			e.printStackTrace();
-			logger.error("return object fail");
-		}
-		return sendObject;
-	}
-	
-	public void addObject(String oname , String brand , String wechat ,
-		String email , String message){
-		SendObject obj = new SendObject();
-		obj.setOname(oname);
-		obj.setBrand(brand);
-		obj.setWchat(wechat);
-		obj.setEmail(email);
-		obj.setMessage(message);
-		Date date = new Date();
-		obj.setModtime(date);
-		obj.setCreatetime(date);
-		try{
-			this.sendObjectRepository.save(obj);
-		}catch(Exception e){
-			e.printStackTrace();
-			logger.error("add object fail");
-		}
-	}
-	
-	public void deleteObject(int oid){
-		List<ObjectGroup> objgrp = this.objectGroupRepository.findByOid(oid);
-		try{
-			for(int i=0 ; i<objgrp.size();i++){
-				ObjectGroup obj = new ObjectGroup();
-				obj = objgrp.get(i);
-				this.objectGroupRepository.delete(obj);
-			}
-			this.sendObjectRepository.delete(this.sendObjectRepository.findByOid(oid));
-		}catch(Exception e){
-			e.printStackTrace();
-			logger.error("delete object fail");
-		}
-	}
-	
-	public void modObject(int oid , String oname , String brand , 
-			String wechat , String email , String message){
-		SendObject obj = this.sendObjectRepository.findByOid(oid);
-		obj.setOname(oname);
-		obj.setBrand(brand);
-		obj.setWchat(wechat);
-		obj.setEmail(email);
-		obj.setMessage(message);
-		Date date = new Date();
-		obj.setModtime(date);
-		try{
-			this.sendObjectRepository.save(obj);
-		}catch(Exception e){
-			e.printStackTrace();
-			logger.error("mod object fail");
-		}
-	}
+    private static Logger logger = LoggerFactory.getLogger(SetSendObjectServiceImp.class);
+
+    @Autowired
+    private SendObjectRepository sendObjectRepository;
+
+    @Autowired
+    private ObjectGroupRepository objectGroupRepository;
+
+    public List<SendObject> findAllObject() {
+        List<SendObject> sendObject = new ArrayList<SendObject>();
+        try {
+            sendObject = this.sendObjectRepository.findAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error("return object fail");
+        }
+        return sendObject;
+    }
+
+    public void addObject(String oname, String brand, String wechat, String email, String message) {
+        SendObject obj = new SendObject();
+        obj.setOname(oname);
+        obj.setBrand(brand);
+        obj.setWchat(wechat);
+        obj.setEmail(email);
+        obj.setMessage(message);
+        Date date = new Date();
+        obj.setModtime(date);
+        obj.setCreatetime(date);
+        try {
+            this.sendObjectRepository.save(obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error("add object fail");
+        }
+    }
+
+    public void deleteObject(int oid) {
+        List<ObjectGroup> objgrp = this.objectGroupRepository.findByOid(oid);
+        try {
+            for (int i = 0; i < objgrp.size(); i++) {
+                ObjectGroup obj = new ObjectGroup();
+                obj = objgrp.get(i);
+                this.objectGroupRepository.delete(obj);
+            }
+            this.sendObjectRepository.delete(this.sendObjectRepository.findByOid(oid));
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error("delete object fail");
+        }
+    }
+
+    public void modObject(int oid, String oname, String brand, String wechat, String email, String message) {
+        SendObject obj = this.sendObjectRepository.findByOid(oid);
+        obj.setOname(oname);
+        obj.setBrand(brand);
+        obj.setWchat(wechat);
+        obj.setEmail(email);
+        obj.setMessage(message);
+        Date date = new Date();
+        obj.setModtime(date);
+        try {
+            this.sendObjectRepository.save(obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error("mod object fail");
+        }
+    }
 }

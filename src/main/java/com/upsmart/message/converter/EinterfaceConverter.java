@@ -17,7 +17,7 @@ import com.upsmart.message.dto.EinterfaceDto;
 public class EinterfaceConverter {
     public EinterfaceDto toDto(EInterface eInterface) {
         EinterfaceDto einterfaceDto = new EinterfaceDto();
-        if(null != eInterface) {
+        if (null != eInterface) {
             einterfaceDto.setInfid(eInterface.getInfid());
             einterfaceDto.setInfname(eInterface.getInfname());
             einterfaceDto.setInfpassword(eInterface.getInfpassword());

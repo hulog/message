@@ -24,30 +24,30 @@ public class SendObject {
     @Column(name = "oid", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int oid;
-    
-    //发送对象名
+
+    // 发送对象名
     @Column(name = "oname", length = 30, nullable = false)
     private String oname;
-    
-    //对象所属部门
+
+    // 对象所属部门
     @Column(name = "brand", length = 30, nullable = false)
     private String brand;
-    
-    //发送对象微信账号
+
+    // 发送对象微信账号
     @Column(name = "wchat", length = 50)
     private String wchat;
 
-    //发送对象邮箱账号
+    // 发送对象邮箱账号
     @Column(name = "email", length = 50)
     private String email;
-    
-    //发送对象短信账号
+
+    // 发送对象短信账号
     @Column(name = "message", length = 50)
     private String message;
-    
+
     @Column(name = "createtime", nullable = false)
     private Date createtime;
-    
+
     @Column(name = "modtime", nullable = false)
     private Date modtime;
 

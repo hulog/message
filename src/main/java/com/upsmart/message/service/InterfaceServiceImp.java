@@ -31,10 +31,10 @@ public class InterfaceServiceImp implements InterfaceService {
 
     @Autowired
     private OuterInfService outerInfService;
-    
+
     @Autowired
     private MsgService msgService;
-    
+
     public Map<String, Object> search(int type, int searchid) {
         Map<String, Object> result = new HashMap<String, Object>();
         try {
@@ -55,91 +55,91 @@ public class InterfaceServiceImp implements InterfaceService {
         try {
             if (0 == type) {
                 List<SendObject> sendObjects = this.sendObjectRepository.findByGid(sendid);
-                    //TODO 调用发送方法
-                    if(1 == way) {
-                        if(!this.outerInfService.sendWx(content, sendObjects)) {
-                            result = "微信发送错误";
-                        } else {
-                            for(SendObject sendObject : sendObjects) {
-                                this.msgService.insertmsg(cid, content, sendObject.getOid(), way);
-                            }
-                        }
-                    } else if(2 == way) {
-                        if(!this.outerInfService.sendEmail(content, sendObjects)) {
-                            result = "邮件发送错误";
-                        } else {
-                            for(SendObject sendObject : sendObjects) {
-                                this.msgService.insertmsg(cid, content, sendObject.getOid(), way);
-                            }
-                        }
-                    } else if(3 == way) {
-                        if(!this.outerInfService.sendSms(content, sendObjects)) {
-                            result = "短信发送错误";
-                        } else {
-                            for(SendObject sendObject : sendObjects) {
-                                this.msgService.insertmsg(cid, content, sendObject.getOid(), way);
-                            }
-                        }
-                    } else if(4 == way) {
-                        if(!this.outerInfService.sendWx(content, sendObjects)) {
-                            result = "微信发送错误";
-                        } else {
-                            for(SendObject sendObject : sendObjects) {
-                                this.msgService.insertmsg(cid, content, sendObject.getOid(), way);
-                            }
-                        }
-                        if(!this.outerInfService.sendEmail(content, sendObjects)) {
-                            result = "邮件发送错误";
-                        } else {
-                            for(SendObject sendObject : sendObjects) {
-                                this.msgService.insertmsg(cid, content, sendObject.getOid(), way);
-                            }
-                        }
-                        if(!this.outerInfService.sendSms(content, sendObjects)) {
-                            result = "短信发送错误";
-                        } else {
-                            for(SendObject sendObject : sendObjects) {
-                                this.msgService.insertmsg(cid, content, sendObject.getOid(), way);
-                            }
-                        }
+                // TODO 调用发送方法
+                if (1 == way) {
+                    if (!this.outerInfService.sendWx(content, sendObjects)) {
+                        result = "微信发送错误";
                     } else {
-                        result = "发送方式错误";
+                        for (SendObject sendObject : sendObjects) {
+                            this.msgService.insertmsg(cid, content, sendObject.getOid(), way);
+                        }
                     }
-            } else if(1 == type) {
+                } else if (2 == way) {
+                    if (!this.outerInfService.sendEmail(content, sendObjects)) {
+                        result = "邮件发送错误";
+                    } else {
+                        for (SendObject sendObject : sendObjects) {
+                            this.msgService.insertmsg(cid, content, sendObject.getOid(), way);
+                        }
+                    }
+                } else if (3 == way) {
+                    if (!this.outerInfService.sendSms(content, sendObjects)) {
+                        result = "短信发送错误";
+                    } else {
+                        for (SendObject sendObject : sendObjects) {
+                            this.msgService.insertmsg(cid, content, sendObject.getOid(), way);
+                        }
+                    }
+                } else if (4 == way) {
+                    if (!this.outerInfService.sendWx(content, sendObjects)) {
+                        result = "微信发送错误";
+                    } else {
+                        for (SendObject sendObject : sendObjects) {
+                            this.msgService.insertmsg(cid, content, sendObject.getOid(), way);
+                        }
+                    }
+                    if (!this.outerInfService.sendEmail(content, sendObjects)) {
+                        result = "邮件发送错误";
+                    } else {
+                        for (SendObject sendObject : sendObjects) {
+                            this.msgService.insertmsg(cid, content, sendObject.getOid(), way);
+                        }
+                    }
+                    if (!this.outerInfService.sendSms(content, sendObjects)) {
+                        result = "短信发送错误";
+                    } else {
+                        for (SendObject sendObject : sendObjects) {
+                            this.msgService.insertmsg(cid, content, sendObject.getOid(), way);
+                        }
+                    }
+                } else {
+                    result = "发送方式错误";
+                }
+            } else if (1 == type) {
                 SendObject sendObject = this.sendObjectRepository.findByOid(sendid);
                 List<SendObject> sendObjects = new ArrayList<>();
                 sendObjects.add(sendObject);
-              //TODO 调用发送方法
-                if(1 == way) {
-                    if(!this.outerInfService.sendWx(content, sendObjects)) {
+                // TODO 调用发送方法
+                if (1 == way) {
+                    if (!this.outerInfService.sendWx(content, sendObjects)) {
                         result = "微信发送错误";
                     } else {
                         this.msgService.insertmsg(cid, content, sendid, way);
                     }
-                } else if(2 == way) {
-                    if(!this.outerInfService.sendEmail(content, sendObjects)) {
+                } else if (2 == way) {
+                    if (!this.outerInfService.sendEmail(content, sendObjects)) {
                         result = "邮件发送错误";
                     } else {
                         this.msgService.insertmsg(cid, content, sendid, way);
                     }
-                } else if(3 == way) {
-                    if(!this.outerInfService.sendSms(content, sendObjects)) {
+                } else if (3 == way) {
+                    if (!this.outerInfService.sendSms(content, sendObjects)) {
                         result = "短信发送错误";
                     } else {
                         this.msgService.insertmsg(cid, content, sendid, way);
                     }
-                } else if(4 == way) {
-                    if(!this.outerInfService.sendWx(content, sendObjects)) {
+                } else if (4 == way) {
+                    if (!this.outerInfService.sendWx(content, sendObjects)) {
                         result = "微信发送错误";
                     } else {
                         this.msgService.insertmsg(cid, content, sendid, way);
                     }
-                    if(!this.outerInfService.sendEmail(content, sendObjects)) {
+                    if (!this.outerInfService.sendEmail(content, sendObjects)) {
                         result = "邮件发送错误";
                     } else {
                         this.msgService.insertmsg(cid, content, sendid, way);
                     }
-                    if(!this.outerInfService.sendSms(content, sendObjects)) {
+                    if (!this.outerInfService.sendSms(content, sendObjects)) {
                         result = "短信发送错误";
                     } else {
                         this.msgService.insertmsg(cid, content, sendid, way);
@@ -157,30 +157,31 @@ public class InterfaceServiceImp implements InterfaceService {
         return result;
     }
 
-//    public String sendown(String account, int way, String content) {
-//        String result = null;
-//        try {
-//            if(1 == way) {
-//                //TODO 调用微信发送
-//                
-//            } else if(2 == way) {
-//                if(account.matches("^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$")) {
-//                    //TODO 调用邮件发送方式
-//                } else {
-//                    result = "邮箱格式错误";
-//                }
-//            } else if(3 == way) {
-//                if(account.matches("1[358][0-9]{9,9}")) {
-//                    //TODO 调用短信发送方法
-//                } else {
-//                    result = "手机号格式错误";
-//                }
-//            } else {
-//                result = "发送方式错误";
-//            }
-//        } catch (Exception e) {
-//            result = "系统出错";
-//        }
-//        return result;
-//    }
+    // public String sendown(String account, int way, String content) {
+    // String result = null;
+    // try {
+    // if(1 == way) {
+    // //TODO 调用微信发送
+    //
+    // } else if(2 == way) {
+    // if(account.matches("^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$"))
+    // {
+    // //TODO 调用邮件发送方式
+    // } else {
+    // result = "邮箱格式错误";
+    // }
+    // } else if(3 == way) {
+    // if(account.matches("1[358][0-9]{9,9}")) {
+    // //TODO 调用短信发送方法
+    // } else {
+    // result = "手机号格式错误";
+    // }
+    // } else {
+    // result = "发送方式错误";
+    // }
+    // } catch (Exception e) {
+    // result = "系统出错";
+    // }
+    // return result;
+    // }
 }

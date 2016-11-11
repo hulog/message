@@ -31,41 +31,42 @@ import net.sf.json.JSONObject;
  */
 @Service
 public class WeixinService {
-    
+
     @Autowired
     private EInterfaceRepository eInterfaceRepository;
-    
+
     private static final String separator = "|";
     private static Logger logger = LoggerFactory.getLogger(WeixinService.class);
     private String soapRequestOfSaml = "";
     private String soapResponseData = "";
-    
-            //"https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=" + CorpID + "&corpsecret="+ Secret;
+
+    // "https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=" + CorpID +
+    // "&corpsecret="+ Secret;
 
     private String getAccessToken() {
         EInterface eInterface = this.eInterfaceRepository.findByInftype(GlobalConstants.WEIXIN_TYPE_IN_DATABASE);
-        
-        String CorpID = eInterface.getInfname();//"wx60796de01f1227b0";
-        String Secret = eInterface.getInfpassword();//"GtoFvR8BDGY5PGCn0YoVRxSZC44n089AZQNJG5zHfy7QGjdD-brd5iR-o_yj8YwQ";
-        String url = eInterface.getInfurl()+"gettoken?corpid=" + CorpID + "&corpsecret="+Secret;
+
+        String CorpID = eInterface.getInfname();// "wx60796de01f1227b0";
+        String Secret = eInterface.getInfpassword();// "GtoFvR8BDGY5PGCn0YoVRxSZC44n089AZQNJG5zHfy7QGjdD-brd5iR-o_yj8YwQ";
+        String url = eInterface.getInfurl() + "gettoken?corpid=" + CorpID + "&corpsecret=" + Secret;
         PostMethod postmethod = new PostMethod(url);
         HttpClient httpClient = new HttpClient();
         int statusCode;
         try {
             statusCode = httpClient.executeMethod(postmethod);
-            logger.info("获取微信token时，statusCode:"+statusCode);
+            logger.info("获取微信token时，statusCode:" + statusCode);
         } catch (HttpException e) {
-        	logger.error("获取微信token时，报HttpException异常");
+            logger.error("获取微信token时，报HttpException异常");
             e.printStackTrace();
         } catch (IOException e) {
-        	logger.error("获取微信token时，报IOException异常");
+            logger.error("获取微信token时，报IOException异常");
             e.printStackTrace();
         }
 
         try {
             soapResponseData = postmethod.getResponseBodyAsString();
         } catch (IOException e) {
-        	logger.error("获取微信token时，响应数据获取失败");
+            logger.error("获取微信token时，响应数据获取失败");
             e.printStackTrace();
         }
         JSONObject jsonObject = JSONObject.fromObject(soapResponseData);
@@ -73,27 +74,26 @@ public class WeixinService {
         return jsonObject.getString("access_token");
     }
 
-    private void msgTmplBulid(String wxlist,String content){
-        
-        this.soapRequestOfSaml = "" 
-                + "{                                                                   "
-                + "   \"touser\": \""+wxlist+"\",                 "
+    private void msgTmplBulid(String wxlist, String content) {
+
+        this.soapRequestOfSaml = "" + "{                                                                   "
+                + "   \"touser\": \"" + wxlist + "\",                 "
                 + "   \"toparty\": \"@all\",                          "
                 + "   \"totag\": \"@all\",                              "
                 + "   \"msgtype\": \"text\",                        "
                 + "   \"agentid\": \"1\",                                "
-                + "   \"text\": {                                               "
-                + "       \"content\": \""+content+"\"       "
-                + "   },                                                                "
+                + "   \"text\": {                                               " + "       \"content\": \"" + content
+                + "\"       " + "   },                                                                "
                 + "   \"safe\":\"0\"                                          "
                 + "}                                                                    ";
     }
-    
-    private boolean send(){
+
+    private boolean send() {
         try {
-//            String url = "https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=ACCESS_TOKEN";
+            // String url =
+            // "https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=ACCESS_TOKEN";
             String url = this.eInterfaceRepository.findByInftype(GlobalConstants.WEIXIN_TYPE_IN_DATABASE).getInfurl();
-            url = url+"message/send?access_token="+ this.getAccessToken();
+            url = url + "message/send?access_token=" + this.getAccessToken();
             PostMethod postmethod = new PostMethod(url);
             byte[] b = this.soapRequestOfSaml.getBytes("UTF-8");
             InputStream is = new ByteArrayInputStream(b, 0, b.length);
@@ -102,9 +102,9 @@ public class WeixinService {
             postmethod.setRequestEntity(re);
             HttpClient httpClient = new HttpClient();
             int statusCode = httpClient.executeMethod(postmethod);
-            logger.info("微信发送信息时，statusCode:"+statusCode);
+            logger.info("微信发送信息时，statusCode:" + statusCode);
             String soapResponseData = postmethod.getResponseBodyAsString();
-            logger.info("微信发送信息成功，第三方微信接口返回信息:"+soapResponseData);
+            logger.info("微信发送信息成功，第三方微信接口返回信息:" + soapResponseData);
             return true;
         } catch (Exception e) {
             logger.error("微信发送信息时异常");
@@ -112,20 +112,22 @@ public class WeixinService {
             return false;
         }
     }
-    
+
     /**
-     * @param userlist 发送对象列表
-     * @param content 发送内容
+     * @param userlist
+     *            发送对象列表
+     * @param content
+     *            发送内容
      * @return 发送是否成功
      */
     public boolean sendMsgToUsers(List<SendObject> userlist, String content) {
-        
-        //提取发送对象的微信id，按官方API定义格式化连接各个发送对象ID
+
+        // 提取发送对象的微信id，按官方API定义格式化连接各个发送对象ID
         StringBuilder sb = new StringBuilder();
-        for(SendObject usr : userlist){
+        for (SendObject usr : userlist) {
             sb.append(usr.getWchat().trim()).append(separator);
         }
-        sb.deleteCharAt(sb.length()-1);
+        sb.deleteCharAt(sb.length() - 1);
         this.msgTmplBulid(sb.toString(), content);
         return this.send();
     }

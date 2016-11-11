@@ -19,18 +19,18 @@ import com.upsmart.message.domain.ObjectGroup;
 
 @Service
 public interface GroupService {
-    
+
     public List<Map<String, Object>> queryGroup();
-	
-	public List<Group>findAllgroup();
-	
-	public List<ObjectGroup>findAllgroupobject();
-	
-	public void addGroup(String gname , List<Integer> oid);
-	
-	public void deleteGroup(int gid);
-	
-	public void modGroup(int gid , String gname , List<Integer> oid);
-	
-	public boolean check(String gname);
+
+    public List<Group> findAllgroup();
+
+    public List<ObjectGroup> findAllgroupobject();
+
+    public void addGroup(String gname, List<Integer> oid);
+
+    public void deleteGroup(int gid);
+
+    public void modGroup(int gid, String gname, List<Integer> oid);
+
+    public boolean check(String gname);
 }

@@ -15,8 +15,8 @@ import com.upsmart.message.domain.EInterface;
 @Service
 public interface SetService {
     public String setwchat(String url, String wname, String wpassword);
-    
+
     public String setemail(String title, String host, String port, String ename, String epassword);
-    
+
     public EInterface findConfig(int inftype);
 }

@@ -18,7 +18,7 @@ import com.upsmart.message.domain.Msg;
 @Service
 public interface ManageMsgService {
 
-	public List<Msg> findAll();
-	
-	public void deleteMsg(int mid);
+    public List<Msg> findAll();
+
+    public void deleteMsg(int mid);
 }

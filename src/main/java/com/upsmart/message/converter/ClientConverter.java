@@ -18,12 +18,12 @@ import com.upsmart.message.dto.ClientDto;
  */
 @Component
 public class ClientConverter {
-    public List<ClientDto> toDtos(List<Client> clients){
-        if(null == clients || clients.size() == 0 ){
+    public List<ClientDto> toDtos(List<Client> clients) {
+        if (null == clients || clients.size() == 0) {
             return null;
         }
         List<ClientDto> list = new ArrayList<>();
-        for(Client element : clients){
+        for (Client element : clients) {
             list.add(this.toDto(element));
         }
         return list;

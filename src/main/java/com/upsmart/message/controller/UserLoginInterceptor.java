@@ -22,7 +22,7 @@ public class UserLoginInterceptor implements HandlerInterceptor {
         if (sessionObj != null) {
             return true;
         }
-        response.sendRedirect(request.getContextPath()+"/index.html");
+        response.sendRedirect(request.getContextPath() + "/index.html");
         logger.info(request.getRemoteAddr() + "试图以用户身份登陆，被成功拦截");
         return false;
     }

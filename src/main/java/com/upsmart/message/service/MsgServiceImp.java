@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import com.upsmart.message.domain.Msg;
 import com.upsmart.message.repository.MsgRepository;
 import com.upsmart.message.repository.SendObjectRepository;
@@ -23,7 +22,7 @@ import com.upsmart.message.util.DateUtil;
  * @author aidar
  * @version 0.0.1
  * @desc controller
- * @date 2016年10月19日 
+ * @date 2016年10月19日
  */
 @Service
 public class MsgServiceImp implements MsgService {
@@ -32,7 +31,7 @@ public class MsgServiceImp implements MsgService {
     private MsgRepository msgRepository;
     @Autowired
     private SendObjectRepository sendObjectRepository;
-    
+
     @Override
     public String insertmsg(int cid, String mcontent, int oid, int sendway) {
         Msg msg = new Msg();
@@ -50,7 +49,7 @@ public class MsgServiceImp implements MsgService {
         return "success";
     }
 
-    public List<Map<String, Object>> findByCid(int cid){
+    public List<Map<String, Object>> findByCid(int cid) {
         List<Msg> msgs = this.msgRepository.findByCid(cid);
         List<Map<String, Object>> returnResult = new ArrayList<>();
         for (int i = 0; i < msgs.size(); i++) {
@@ -58,7 +57,7 @@ public class MsgServiceImp implements MsgService {
             int oid = msgs.get(i).getOid();
             msgsMap.put("oname", this.sendObjectRepository.findByOid(oid).getOname());
             msgsMap.put("sendway", msgs.get(i).getSendway());
-            msgsMap.put("mcontent",msgs.get(i).getMcontent() );
+            msgsMap.put("mcontent", msgs.get(i).getMcontent());
             msgsMap.put("sendtime", msgs.get(i).getSendtime());
             returnResult.add(msgsMap);
         }

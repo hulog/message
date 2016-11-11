@@ -22,29 +22,29 @@ import com.upsmart.message.repository.MsgRepository;
 
 @Service
 public class ManageMsgServiceImp {
-	
-	private static Logger logger = LoggerFactory.getLogger(ManageMsgServiceImp.class);
-	
-	@Autowired
-	private MsgRepository msgRepository;
-	
-	public List<Msg> findAll(){
-		List<Msg> msg = new ArrayList<Msg>();
-		try {
-			msg = this.msgRepository.findAll();
-		} catch (Exception e) {
-			e.printStackTrace();
-			logger.error("find msg fail");
-		}
-		return msg;
-	}
-	
-	public void deleteMsg(int mid){
-		try {
-			this.msgRepository.delete(this.msgRepository.findByMid(mid));
-		} catch (Exception e) {
-			e.printStackTrace();
-			logger.error("delete msg fail");
-		}
-	}
+
+    private static Logger logger = LoggerFactory.getLogger(ManageMsgServiceImp.class);
+
+    @Autowired
+    private MsgRepository msgRepository;
+
+    public List<Msg> findAll() {
+        List<Msg> msg = new ArrayList<Msg>();
+        try {
+            msg = this.msgRepository.findAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error("find msg fail");
+        }
+        return msg;
+    }
+
+    public void deleteMsg(int mid) {
+        try {
+            this.msgRepository.delete(this.msgRepository.findByMid(mid));
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error("delete msg fail");
+        }
+    }
 }

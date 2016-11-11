@@ -14,7 +14,7 @@ import com.upsmart.message.dto.GroupDto;
 public class GroupConverter {
     public GroupDto toDto(Group group) {
         GroupDto groupDto = new GroupDto();
-        if(null != group) {
+        if (null != group) {
             groupDto.setCreatetime(group.getCreatetime());
             groupDto.setGid(group.getGid());
             groupDto.setGname(group.getGname());

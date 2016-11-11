@@ -34,7 +34,7 @@ public class Interface {
 
     @Autowired
     private InterfaceService interfaceService;
-    
+
     @Autowired
     private MessageProducer messageProducer;
 
@@ -80,7 +80,7 @@ public class Interface {
         int cid = loginService.check(cname, password);
         if (cid > 0) {
             try {
-                if (null == this.messageProducer.send(cid,type, sendid, way, content)) {
+                if (null == this.messageProducer.send(cid, type, sendid, way, content)) {
                     ResponseUtil.buildResMsg(msg, StatusCode.SUCCESS);
                 } else {
                     logger.warn("发送过程出错");

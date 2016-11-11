@@ -42,8 +42,8 @@ public class SmsService {
         String secret = intf.getInfpassword();// 128dd6fde0561a4d4b94772f3aa3595d
         // String to = listToStringWithSeparator(userlist,
         // GlobalConstants.COMMA);
-        
-        //调用淘宝官方SDK
+
+        // 调用淘宝官方SDK
         TaobaoClient client = new DefaultTaobaoClient(url, appkey, secret);
         AlibabaAliqinFcSmsNumSendRequest req = new AlibabaAliqinFcSmsNumSendRequest();
         req.setExtend("");
@@ -51,18 +51,18 @@ public class SmsService {
         req.setSmsFreeSignName("银联智慧-无锡");
         req.setSmsTemplateCode("SMS_18680562");
         AlibabaAliqinFcSmsNumSendResponse rsp;
-        //短信模板参数长度不能超过15
-        String sendContent = content.length()>15?content.substring(0, 15):content;
-        //TODO 最好调用一次接口，完成所有发送
-        //群发时，短信内容中不能实现姓名显示，因此循环发送
+        // 短信模板参数长度不能超过15
+        String sendContent = content.length() > 15 ? content.substring(0, 15) : content;
+        // TODO 最好调用一次接口，完成所有发送
+        // 群发时，短信内容中不能实现姓名显示，因此循环发送
         for (SendObject to : userlist) {
-             req.setSmsParamString("{name:'"+to.getOname()+"',content:'"+sendContent+"'}");
+            req.setSmsParamString("{name:'" + to.getOname() + "',content:'" + sendContent + "'}");
             req.setRecNum(to.getMessage());
             try {
                 rsp = client.execute(req);
                 JSONObject json = JSONObject.fromObject(rsp.getBody());
                 if (null == json.getJSONObject("alibaba_aliqin_fc_sms_num_send_response")) {
-                	logger.error("调用第三方短信接口失败");
+                    logger.error("调用第三方短信接口失败");
                     return false;
                 }
             } catch (ApiException e) {

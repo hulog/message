@@ -1,4 +1,5 @@
 package com.upsmart.message.dto;
+
 /**
  * Copyright (C), 2015, 银联智惠信息服务（上海）有限公司
  *
@@ -9,9 +10,9 @@ package com.upsmart.message.dto;
  */
 public class ObjectGroupDto {
     private int id;
-    
+
     private int gid;
-    
+
     private int oid;
 
     public int getId() {

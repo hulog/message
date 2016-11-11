@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -56,7 +55,7 @@ public class ClientController {
     // delete user
     @RequestMapping(value = "delete", method = RequestMethod.POST)
     @ResponseBody
-    public BaseMessage delete(@RequestParam(value="cids",required=true) String[] cids) {
+    public BaseMessage delete(@RequestParam(value = "cids", required = true) String[] cids) {
         BaseMessage msg = new BaseMessage();
         if (null == cids || cids.length == 0) {
             ResponseUtil.buildResMsg(msg, StatusCode.ERROR_INPUT);
@@ -75,24 +74,24 @@ public class ClientController {
     @ResponseBody
     public BaseMessage queryAllClient() {
         BaseMessage msg = new BaseMessage();
-        List<Map<String , Object>> result = new ArrayList<Map<String , Object>>();
+        List<Map<String, Object>> result = new ArrayList<Map<String, Object>>();
         List<ClientDto> clientlist = this.clientService.queryAllClient();
-        if(!clientlist.isEmpty()){
-        	for(int i = 0 ; i < clientlist.size() ; i++){
-    			Map<String , Object> clt = new HashMap<String , Object>();
-    			clt.put("cid", clientlist.get(i).getCid());
-    			clt.put("cname", clientlist.get(i).getCname());
-    			result.add(clt);
-    		}
+        if (!clientlist.isEmpty()) {
+            for (int i = 0; i < clientlist.size(); i++) {
+                Map<String, Object> clt = new HashMap<String, Object>();
+                clt.put("cid", clientlist.get(i).getCid());
+                clt.put("cname", clientlist.get(i).getCname());
+                result.add(clt);
+            }
         }
-        
+
         try {
-			msg.setData(result);
-		} catch (Exception e) {
-			msg.setData("fail");
-			e.printStackTrace();
-			logger.error("fail to return object");
-		}
+            msg.setData(result);
+        } catch (Exception e) {
+            msg.setData("fail");
+            e.printStackTrace();
+            logger.error("fail to return object");
+        }
         return msg;
     }
 
@@ -100,20 +99,20 @@ public class ClientController {
     @RequestMapping(value = "modify", method = RequestMethod.POST)
     @ResponseBody
     public BaseMessage modifyClient(@RequestParam(value = "cid", required = false) String id,
-    		@RequestParam(value = "cname", required = false) String name,
+            @RequestParam(value = "cname", required = false) String name,
             @RequestParam(value = "cpasswd", required = false) String passwd) {
-    	System.out.println("id="+id+",passwd="+passwd+",name="+name);
+        System.out.println("id=" + id + ",passwd=" + passwd + ",name=" + name);
         BaseMessage msg = new BaseMessage();
-        try{
+        try {
             Integer cid = Integer.parseInt(id);
             String pwd = passwd;
             String cname = name;
-            if(this.clientService.modifyClient(cid, cname, pwd)){
+            if (this.clientService.modifyClient(cid, cname, pwd)) {
                 ResponseUtil.buildResMsg(msg, StatusCode.SUCCESS);
-            }else{
+            } else {
                 ResponseUtil.buildResMsg(msg, StatusCode.ERROR);
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             ResponseUtil.buildResMsg(msg, StatusCode.ERROR);
         }

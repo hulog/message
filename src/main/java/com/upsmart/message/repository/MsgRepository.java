@@ -13,18 +13,18 @@ import com.upsmart.message.domain.Msg;
  *
  * @author Buby
  * @version 0.0.1
- * @desc 
+ * @desc
  * @date 2016年10月18日
  */
 
 @Repository
-public interface MsgRepository extends PagingAndSortingRepository<Msg , Integer >{
-	
-	List<Msg> findAll();
-	
-	@Query(value = "select * from msg m where m.mid=?1", nativeQuery=true)
-	Msg findByMid(int mid);
-	
-	List<Msg> findByCid(int cid);
-	
+public interface MsgRepository extends PagingAndSortingRepository<Msg, Integer> {
+
+    List<Msg> findAll();
+
+    @Query(value = "select * from msg m where m.mid=?1", nativeQuery = true)
+    Msg findByMid(int mid);
+
+    List<Msg> findByCid(int cid);
+
 }

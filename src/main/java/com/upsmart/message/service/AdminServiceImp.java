@@ -1,9 +1,5 @@
 package com.upsmart.message.service;
 
-import java.util.Date;
-
-import javax.xml.crypto.Data;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +15,14 @@ import com.upsmart.message.util.Md5;
  * @author aidar
  * @version 0.0.1
  * @desc controller
- * @date 2016年10月19日 
+ * @date 2016年10月19日
  */
 @Service
 public class AdminServiceImp implements AdminService {
     private static Logger logger = LoggerFactory.getLogger(AdminServiceImp.class);
     @Autowired
     private AdminRepository adminRepository;
-    
+
     @Override
     public String insertadmin(String aname, String apassword) {
         Admin admin = new Admin();

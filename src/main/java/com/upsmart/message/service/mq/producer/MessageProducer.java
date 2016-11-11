@@ -49,7 +49,7 @@ public class MessageProducer {
             msg.put("sendid", sendid);
             msg.put("way", way);
             msg.put("content", content);
-            if(!this.sendMessage(msg)) {
+            if (!this.sendMessage(msg)) {
                 result = "发送失败";
             }
         } catch (Exception e) {

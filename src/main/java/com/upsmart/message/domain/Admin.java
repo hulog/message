@@ -22,24 +22,24 @@ public class Admin {
     @Column(name = "aid", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int aid;
-    
-    //管理员账号
+
+    // 管理员账号
     @Column(name = "aname", length = 30, nullable = false)
     private String aname;
-    
-    //管理员密码
+
+    // 管理员密码
     @Column(name = "apassword", length = 32, nullable = false)
     private String apassword;
-    
-    //管理员微信
+
+    // 管理员微信
     @Column(name = "wechat", length = 50)
     private String wechat;
-    
-    //管理员邮箱
+
+    // 管理员邮箱
     @Column(name = "email", length = 50)
     private String email;
-    
-    //管理员短信
+
+    // 管理员短信
     @Column(name = "message", length = 50)
     private String message;
 
@@ -90,5 +90,5 @@ public class Admin {
     public void setMessage(String message) {
         this.message = message;
     }
-    
+
 }

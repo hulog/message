@@ -20,32 +20,32 @@ import com.upsmart.message.util.ResponseUtil;
  *
  * @author aidar
  * @version 0.0.1
- * @desc 
+ * @desc
  * @date 2016年10月18日
  */
 
 @Controller
 @RequestMapping("/msg")
 public class MsgController {
-	
-	private static Logger logger = LoggerFactory.getLogger(MsgController.class);
-	
-	@Autowired
-	private MsgService msgService;
-	
-	@RequestMapping(value = "querymsg", method = RequestMethod.GET)
+
+    private static Logger logger = LoggerFactory.getLogger(MsgController.class);
+
+    @Autowired
+    private MsgService msgService;
+
+    @RequestMapping(value = "querymsg", method = RequestMethod.GET)
     @ResponseBody
     public BaseMessage querymsg(HttpSession session) {
-		BaseMessage msg = new BaseMessage();
-		try {
-		    int cid = (Integer)session.getAttribute("cid");
-	          ResponseUtil.buildResMsg(msg, StatusCode.SUCCESS);
-	          msg.setData(this.msgService.findByCid(cid));
-		} catch (Exception e) {
-	          logger.error("查询信息失败");
-	          ResponseUtil.buildResMsg(msg, StatusCode.SYSTEM_ERROR);
-	          e.printStackTrace();
-		}
-		return msg;
-	}
+        BaseMessage msg = new BaseMessage();
+        try {
+            int cid = (Integer) session.getAttribute("cid");
+            ResponseUtil.buildResMsg(msg, StatusCode.SUCCESS);
+            msg.setData(this.msgService.findByCid(cid));
+        } catch (Exception e) {
+            logger.error("查询信息失败");
+            ResponseUtil.buildResMsg(msg, StatusCode.SYSTEM_ERROR);
+            e.printStackTrace();
+        }
+        return msg;
+    }
 }

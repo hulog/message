@@ -14,7 +14,7 @@ import com.upsmart.message.dto.MsgDto;
 public class MsgConverter {
     public MsgDto toDto(Msg msg) {
         MsgDto msgDto = new MsgDto();
-        if(null != msgDto) {
+        if (null != msgDto) {
             msgDto.setCid(msg.getCid());
             msgDto.setMcontent(msg.getMcontent());
             msgDto.setMid(msg.getMid());

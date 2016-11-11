@@ -17,14 +17,12 @@ import com.upsmart.message.domain.SendObject;
 
 @Service
 public interface SetSendObjectService {
-	
-	public List<SendObject> findAllObject();
-	
-	public void addObject(String oname , String brand , 
-			String wechat , String email , String message);
-	
-	public void deleteObject(int oid);
-	
-	public void modObject(int oid , String oname , String brand , 
-			String wechat , String email , String message);
+
+    public List<SendObject> findAllObject();
+
+    public void addObject(String oname, String brand, String wechat, String email, String message);
+
+    public void deleteObject(int oid);
+
+    public void modObject(int oid, String oname, String brand, String wechat, String email, String message);
 }

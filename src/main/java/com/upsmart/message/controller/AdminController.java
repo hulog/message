@@ -20,30 +20,29 @@ import com.upsmart.message.util.ResponseUtil;
  * @author aidar
  * @version 0.0.1
  * @desc controller
- * @date 2016年10月17日 
+ * @date 2016年10月17日
  */
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
     private static Logger logger = LoggerFactory.getLogger(AdminController.class);
-  @Autowired
-  private AdminServiceImp adminServiceImpl;
+    @Autowired
+    private AdminServiceImp adminServiceImpl;
 
-  //新增管理员
-  @RequestMapping(value = "insert", method = RequestMethod.POST)
-  @ResponseBody
-  public BaseMessage insert(
-          @RequestParam(value = "name", required = false) String aname,
-          @RequestParam(value = "passwd", required = false) String apassword) {
-      BaseMessage msg = new BaseMessage();
-      try {
-          ResponseUtil.buildResMsg(msg, StatusCode.SUCCESS);
-          msg.setData(this.adminServiceImpl.insertadmin(aname, apassword));
-      } catch (Exception e) {
-          logger.error("配置管理员用户名和密码出错");
-          ResponseUtil.buildResMsg(msg, StatusCode.SYSTEM_ERROR);
-          e.printStackTrace();
-      }
-      return msg;
-  }
+    // 新增管理员
+    @RequestMapping(value = "insert", method = RequestMethod.POST)
+    @ResponseBody
+    public BaseMessage insert(@RequestParam(value = "name", required = false) String aname,
+            @RequestParam(value = "passwd", required = false) String apassword) {
+        BaseMessage msg = new BaseMessage();
+        try {
+            ResponseUtil.buildResMsg(msg, StatusCode.SUCCESS);
+            msg.setData(this.adminServiceImpl.insertadmin(aname, apassword));
+        } catch (Exception e) {
+            logger.error("配置管理员用户名和密码出错");
+            ResponseUtil.buildResMsg(msg, StatusCode.SYSTEM_ERROR);
+            e.printStackTrace();
+        }
+        return msg;
+    }
 }

@@ -20,9 +20,9 @@ public class EinterfaceDto {
     private int inftype;
 
     private String title;
-    
+
     private String host;
-    
+
     private String port;
 
     public int getInfid() {

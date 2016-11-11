@@ -24,14 +24,14 @@ public class Group {
     @Column(name = "gid", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int gid;
-    
-    //群组名
-    @Column(name = "gname", length = 50, nullable =false)
+
+    // 群组名
+    @Column(name = "gname", length = 50, nullable = false)
     private String gname;
-    
+
     @Column(name = "createtime", nullable = false)
     private Date createtime;
-    
+
     @Column(name = "modtime", nullable = false)
     private Date modtime;
 

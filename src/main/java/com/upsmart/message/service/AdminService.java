@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
  * @author aidar
  * @version 0.0.1
  * @desc controller
- * @date 2016年10月17日 
+ * @date 2016年10月17日
  */
 @Service
 public interface AdminService {

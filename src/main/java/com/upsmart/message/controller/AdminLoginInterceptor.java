@@ -21,8 +21,8 @@ public class AdminLoginInterceptor implements HandlerInterceptor {
         if (sessionObj != null) {
             return true;
         }
-        response.sendRedirect(request.getContextPath()+"/admin");
-        logger.info(request.getRemoteAddr()+"试图以管理员身份登陆，被成功拦截");
+        response.sendRedirect(request.getContextPath() + "/admin");
+        logger.info(request.getRemoteAddr() + "试图以管理员身份登陆，被成功拦截");
         return false;
     }
 

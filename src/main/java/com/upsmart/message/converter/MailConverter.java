@@ -23,7 +23,7 @@ public class MailConverter {
 
     @Autowired
     private EInterfaceRepository eInterfaceRepository;
-    
+
     private MailDto setAllMailDtoNeeded(String content, List<String> to) {
         MailDto maildto = new MailDto();
 
@@ -45,7 +45,7 @@ public class MailConverter {
         return maildto;
     }
 
-    public MailDto mailDtoWapper(String content,List<String> to){
+    public MailDto mailDtoWapper(String content, List<String> to) {
         MailDto dto = this.setAllMailDtoNeeded(content, to);
         return dto;
     }

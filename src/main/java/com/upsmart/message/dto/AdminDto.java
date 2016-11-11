@@ -1,4 +1,5 @@
 package com.upsmart.message.dto;
+
 /**
  * Copyright (C), 2015, 银联智惠信息服务（上海）有限公司
  *
@@ -9,15 +10,15 @@ package com.upsmart.message.dto;
  */
 public class AdminDto {
     private int aid;
-    
+
     private String aname;
-    
+
     private String apassword;
-    
+
     private String wechat;
-    
+
     private String email;
-    
+
     private String message;
 
     public int getAid() {
@@ -67,5 +68,5 @@ public class AdminDto {
     public void setMessage(String message) {
         this.message = message;
     }
-    
+
 }

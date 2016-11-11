@@ -12,19 +12,19 @@ import java.util.Date;
  */
 public class ObjectDto {
     private int oid;
-    
+
     private String oname;
-    
+
     private String brand;
-    
+
     private String wchat;
-    
+
     private String email;
-    
+
     private String message;
-    
+
     private Date createtime;
-    
+
     private Date modtime;
 
     public int getOid() {

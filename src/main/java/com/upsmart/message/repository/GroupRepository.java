@@ -1,7 +1,5 @@
 package com.upsmart.message.repository;
 
-
-
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
@@ -15,18 +13,18 @@ import com.upsmart.message.domain.Group;
  *
  * @author Buby
  * @version 0.0.1
- * @desc 
+ * @desc
  * @date 2016年10月17日
  */
 
 @Repository
-public interface GroupRepository extends PagingAndSortingRepository<Group , Integer > {
-	
-	List<Group> findAll(); 
-	
-	Group findByGid(int gid);
-	
-	@Query(value = "select * from ogroup g where g.gname=?1", nativeQuery=true)
-	Group findByGname(String gname);
-	
+public interface GroupRepository extends PagingAndSortingRepository<Group, Integer> {
+
+    List<Group> findAll();
+
+    Group findByGid(int gid);
+
+    @Query(value = "select * from ogroup g where g.gname=?1", nativeQuery = true)
+    Group findByGname(String gname);
+
 }

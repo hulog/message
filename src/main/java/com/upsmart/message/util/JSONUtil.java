@@ -1,15 +1,15 @@
 package com.upsmart.message.util;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
 import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.json.JSONObject;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 /**
  * Copyright (C), 2016, 银联智惠信息服务（上海）有限公司
@@ -25,6 +25,7 @@ public class JSONUtil {
 
     /**
      * 对象转为JSON字符串
+     * 
      * @param object
      * @return
      */
@@ -40,6 +41,7 @@ public class JSONUtil {
 
     /**
      * JSON字符串转为对象
+     * 
      * @param json
      * @param valueType
      * @param <T>
@@ -56,9 +58,9 @@ public class JSONUtil {
         }
         return object;
     }
-    
+
     public static Map<String, Object> jsonToObject(String jsonStr) throws Exception {
-        JSONObject jsonObj = JSONObject.fromObject(jsonStr); 
+        JSONObject jsonObj = JSONObject.fromObject(jsonStr);
         Iterator<String> nameItr = jsonObj.keys();
         String name;
         Map<String, Object> outMap = new HashMap<String, Object>();

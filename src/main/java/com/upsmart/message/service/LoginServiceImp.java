@@ -57,7 +57,7 @@ public class LoginServiceImp implements LoginService {
     }
 
     public ClientDto login(String cname, String cpassword) {
-        Client client = this.clientRepository.findByCnameAndCpassword(cname,Md5.MD5(Md5.MD5(cpassword)));
+        Client client = this.clientRepository.findByCnameAndCpassword(cname, Md5.MD5(Md5.MD5(cpassword)));
         return this.clientConverter.toDto(client);
     }
 }
