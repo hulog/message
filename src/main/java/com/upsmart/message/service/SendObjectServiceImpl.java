@@ -120,6 +120,7 @@ public class SendObjectServiceImpl implements SendObjectService {
                         result = "短信发送错误";
                     }
                 } catch (Exception e) {
+                    e.printStackTrace();
                     logger.error("调用短信接口异常");
                     result = "短信接口出错";
                 }

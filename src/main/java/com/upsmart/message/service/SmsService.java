@@ -52,7 +52,7 @@ public class SmsService {
         req.setSmsTemplateCode("SMS_18680562");
         AlibabaAliqinFcSmsNumSendResponse rsp;
         //短信模板参数长度不能超过15
-        String sendContent = content.substring(0, 15);
+        String sendContent = content.length()>15?content.substring(0, 15):content;
         //TODO 最好调用一次接口，完成所有发送
         //群发时，短信内容中不能实现姓名显示，因此循环发送
         for (SendObject to : userlist) {
